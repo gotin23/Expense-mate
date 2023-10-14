@@ -6,7 +6,7 @@ import { RootState } from "../../Types/types";
 import { UserCardProps } from "../../Types/types";
 import Link from "next/link";
 
-export default function UserCard({ props }: UserCardProps) {
+export default function AddUserToGroup({ props }: UserCardProps) {
   const users = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ export default function UserCard({ props }: UserCardProps) {
       ) : (
         <>
           <p>Your group have been create!</p>
-          <Link href="/myGroup">See my group</Link>
+          <Link href="/MyGroup">See my group</Link>
         </>
       )}
     </div>
