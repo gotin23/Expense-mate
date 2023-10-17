@@ -16,12 +16,18 @@ export default function UserCard({ props }) {
 
   const initialOptions: Options[] = names.map((name) => ({
     label: name,
-    isChecked: true,
+    isChecked: false,
   }));
   const [options, setOptions] = useState<Options[]>(initialOptions);
 
   const [toggleForm, setToggleForm] = useState(false);
   const [amount, setAmount] = useState("");
+
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedOption(e.target.value);
+  };
 
   const handleCheckBoxChange = (index: number) => {
     if (index >= 0 && index < options.length) {
@@ -55,7 +61,7 @@ export default function UserCard({ props }) {
     // Pour obtenir la date au format "AAAA-MM-JJ" (ISO 8601)
     const date = currentDate.toISOString().split("T")[0];
 
-    console.log(valueOfDebt, date);
+    console.log(selectedOption, date, valueOfDebt);
   };
 
   return (
@@ -72,9 +78,29 @@ export default function UserCard({ props }) {
           {names.map((name, index) => (
             <>
               <label htmlFor="user-checkbox">{name}</label>
-              <input type="checkbox" id={`user-checkbox-${index}`} checked={options[index]?.isChecked} onChange={() => handleCheckBoxChange(index)} />
+              <input
+                type="checkbox"
+                id={`user-checkbox-${index}`}
+                readOnly={props.name === name ? true : false}
+                checked={props.name !== name ? options[index]?.isChecked : true}
+                onChange={props.name === name ? undefined : () => handleCheckBoxChange(index)}
+              />
             </>
           ))}
+          <label>Category</label>
+          <select value={selectedOption} onChange={handleSelectChange}>
+            <option value="void">-- Select an option --</option>
+            <option value="Food">Food</option>
+            <option value="Accomodation">Accomodation</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Utilities">Utilities</option>
+            <option value="Gifts">Gifts</option>
+            <option value="Alcohol">Alcohol</option>
+            <option value="Bills">Bills</option>
+            <option value="Sport and fitness">Sport and fitness</option>
+          </select>
           <button type="submit" onClick={handlePayment}>
             Pay!
           </button>
