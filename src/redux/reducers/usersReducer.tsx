@@ -26,13 +26,27 @@ const userSlice = createSlice({
       // Modifier chaque utilisateur existant en ajoutant une nouvelle propriété
       state.users = state.users.map((user) => ({
         ...user,
-        ["to" + action.payload.name]: 0,
+        ["to" + action.payload.name]: [],
       }));
       state.users.push(action.payload);
+    },
+    addDebt: (state, action: PayloadAction<{ toUser: string; date: string; valueOfDebt: number; participantsToDebt: string[] }>) => {
+      const { toUser, date, valueOfDebt, participantsToDebt } = action.payload;
+      // const userToUpdate = state.users.find((user) => user.name === participants[0]);
+      // console.log(userToUpdate);
+      // userToUpdate.toUser.push("hello");
+      participantsToDebt.forEach((participant) => {
+        const id = parseInt(participant); // Convertit la chaîne en entier
+        if (!isNaN(id)) {
+          // Vérifie si la conversion a réussi
+          state.users[id][toUser].push({ date: date });
+        }
+      });
+      console.log(date, participantsToDebt, valueOfDebt, action.payload);
     },
   },
 });
 
-export const { addUser } = userSlice.actions;
+export const { addUser, addDebt } = userSlice.actions;
 
 export default userSlice.reducer;

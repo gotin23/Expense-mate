@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "@/redux/reducers/usersReducer";
 import { RootState } from "../../Types/types";
 import { ChangeEvent, useState } from "react";
-import UserCard from "../../components/AddUserToGroup/AddUserToGroup";
+import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
 
 export default function Home() {
   // const users = useSelector((state: RootState) => state.user);
@@ -65,7 +65,7 @@ export default function Home() {
           {createGroupStep === 2 && (
             <>
               <h2>Your group!</h2>
-              <UserCard props={numberOfPeople} />
+              <AddUserToGroup props={numberOfPeople} />
             </>
           )}
         </div>

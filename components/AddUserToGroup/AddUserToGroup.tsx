@@ -19,16 +19,17 @@ export default function AddUserToGroup({ props }: UserCardProps) {
   const HandleAddUser = () => {
     if (userWaiting <= props) {
       setTimeout(() => {
-        dispatch(addUser({ id: users.users.length, name: name, ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: 0 }), {}) }));
+        dispatch(addUser({ id: users.users.length, name: name, ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [] }), {}) }));
         setUserWaiting(userWaiting + 1);
 
         setName("User" + (userWaiting + 1));
       }, 200);
+      console.log(users);
     } else {
       console.log("trop");
     }
   };
-  console.log(typeof props);
+  console.log(props);
 
   return (
     <div>
