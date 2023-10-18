@@ -32,14 +32,17 @@ const userSlice = createSlice({
     },
     addDebt: (state, action: PayloadAction<{ toUser: string; date: string; valueOfDebt: number; participantsToDebt: string[] }>) => {
       const { toUser, date, valueOfDebt, participantsToDebt } = action.payload;
-      // const userToUpdate = state.users.find((user) => user.name === participants[0]);
-      // console.log(userToUpdate);
-      // userToUpdate.toUser.push("hello");
+
       participantsToDebt.forEach((participant) => {
-        const id = parseInt(participant); // Convertit la chaîne en entier
+        const id = parseInt(participant);
         if (!isNaN(id)) {
-          // Vérifie si la conversion a réussi
-          state.users[id][toUser].push({ date: date });
+          const user: any = state.users[id];
+          if (user) {
+            if (!user[toUser]) {
+              user[toUser] = [] as any[]; // Utilisation de 'as any[]' pour indiquer le type
+            }
+            user[toUser].push({ date: date });
+          }
         }
       });
       console.log(date, participantsToDebt, valueOfDebt, action.payload);

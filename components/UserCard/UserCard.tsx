@@ -60,7 +60,7 @@ export default function UserCard({ props }) {
     console.log(participantsToDebt);
     const ids = participantsToDebt.map((name) => {
       const user = users.users.find((user) => user.name === name);
-      return user ? user.id.toString() : null;
+      return user ? user.id.toString() : "";
     });
     console.log(ids);
 
