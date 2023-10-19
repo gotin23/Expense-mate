@@ -1,20 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../../../Types/types";
+import { Transaction } from "../../../Types/types";
 
-// Définissez le type pour les objets utilisateur
-export interface User {
-  id: number;
-  name: string;
-
-  // Autres propriétés d'utilisateur
-}
-
-// Définissez le type d'état initial
 export interface UserState {
   users: User[];
+  allTransactions: Transaction[];
 }
 
 const initialState: UserState = {
   users: [],
+  allTransactions: [{ payment: 100, participants: ["Hugo", "Seb", "Max"], date: "20-10-23", category: "Food", from: "Joe" }],
 };
 
 const userSlice = createSlice({
@@ -30,8 +25,15 @@ const userSlice = createSlice({
       }));
       state.users.push(action.payload);
     },
-    addDebt: (state, action: PayloadAction<{ toUser: string; date: string; valueOfDebt: number; participantsToDebt: string[] }>) => {
-      const { toUser, date, valueOfDebt, participantsToDebt } = action.payload;
+
+    addPayment: (state, action: PayloadAction<{ payment: number; from: number; participants: string[]; date: string; category: string; fromName: string }>) => {
+      const { payment, from, participants, date, category, fromName } = action.payload;
+      state.users[from].payment.push({ payment: payment, participants: participants, date: date });
+      state.allTransactions.push({ payment: payment, participants: participants, date: date, category: category, from: fromName });
+    },
+
+    addDebt: (state, action: PayloadAction<{ toUser: string; date: string; valueOfDebt: number; participantsToDebt: string[]; category: string }>) => {
+      const { toUser, date, valueOfDebt, participantsToDebt, category } = action.payload;
 
       participantsToDebt.forEach((participant) => {
         const id = parseInt(participant);
@@ -41,7 +43,7 @@ const userSlice = createSlice({
             if (!user[toUser]) {
               user[toUser] = [] as any[]; // Utilisation de 'as any[]' pour indiquer le type
             }
-            user[toUser].push({ date: date });
+            user[toUser].push({ date: date, valueOfDebt: valueOfDebt, category: category });
           }
         }
       });
@@ -50,6 +52,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { addUser, addDebt } = userSlice.actions;
+export const { addUser, addDebt, addPayment } = userSlice.actions;
 
 export default userSlice.reducer;

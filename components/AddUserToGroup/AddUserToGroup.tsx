@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "@/redux/reducers/usersReducer";
 import { RootState } from "../../Types/types";
-import { UserCardProps } from "../../Types/types";
+import { User } from "../../Types/types";
 import Link from "next/link";
-
-export default function AddUserToGroup({ props }: UserCardProps) {
+import { AddUserToGroupProps } from "../../Types/types";
+export default function AddUserToGroup({ props }: AddUserToGroupProps) {
+  console.log(props);
   const users = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function AddUserToGroup({ props }: UserCardProps) {
   const HandleAddUser = () => {
     if (userWaiting <= props) {
       setTimeout(() => {
-        dispatch(addUser({ id: users.users.length, name: name, ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [] }), {}) }));
+        dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [] }), {}) }));
         setUserWaiting(userWaiting + 1);
 
         setName("User" + (userWaiting + 1));

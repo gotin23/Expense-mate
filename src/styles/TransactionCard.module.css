@@ -1,0 +1,33 @@
+.transaction-card{
+    width: 33%;
+    height: 190px;
+    background-color: var(--color-secondary);
+    border: 2px solid var(--color-primary);
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    color: var(--color-tertiary);
+    overflow: hidden;
+}
+.transaction-card h2{
+ margin-bottom: 5px;
+}
+.transaction-card span{
+font-weight: bold;
+color: var(--color-tertiary);
+}
+.transaction-card p{
+ color:var(--color-primary);
+ margin-bottom: 5px;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+.transaction-card ul{
+display: flex;
+overflow-x: scroll;
+}
+.transaction-card li{
+color: var(--color-primary);
+list-style-type: none;
+}

@@ -3,6 +3,11 @@
   --color-secondary: #ffffff;
   --color-tertiary: #f66a12;
 }
+@font-face {
+  font-family: 'Deeper';
+  src: url('../../public/assets/fonts/TT\ Interphases\ Pro/interphase.ttf');
+
+}
 
 *,::after,::before{
   padding: 0;
@@ -13,6 +18,7 @@
 body{
   background-color: var(--color-primary) ;
   color:var(--color-secondary);
+  font-family: "deeper";
 }
 
 
