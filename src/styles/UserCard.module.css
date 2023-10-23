@@ -48,6 +48,8 @@
 .amount-container{
   margin-top: 20px;
     padding-left: 10px;
+    width: 100%;
+    display: flex;
 }
 .input-number{
     height: 30px;
@@ -73,7 +75,7 @@
 .label-and-checkbox{
 margin-right: 15px;
 min-width: 50px;
-background-color: aqua;
+/* background-color: aqua; */
 display: flex;
 flex-direction: column;
 justify-content: center;

@@ -16,6 +16,8 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
   const names: string[] = users.users.map((user) => user.name);
 
   const [name, setName] = useState("User");
+  // const uniqueID = uuidv4();
+  // console.log(uniqueID, "paricicici");
 
   const HandleAddUser = () => {
     if (!names.includes(name) && users.users.length < 10 && name.length < 13) {

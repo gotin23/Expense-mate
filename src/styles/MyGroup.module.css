@@ -6,10 +6,10 @@ color: var(--color-tertiary);
 }
 .btns-container{
     width: 100%;
-    /* background-color: aqua; */
     display: flex;
 
 }
+
 .btn-all-transactions,.btn-add-user{
     padding: 8px;
     border: 3px solid var(--color-tertiary);

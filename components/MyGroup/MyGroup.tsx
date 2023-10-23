@@ -6,11 +6,13 @@ import UserCard from "../../components/UserCard/UserCard";
 import styles from "../../src/styles/MyGroup.module.css";
 import AllTransactions from "../../components/AllTransactions/AllTransactions";
 import AddUserToGroup from "../AddUserToGroup/AddUserToGroup";
+import { v4 as uuidv4 } from "uuid";
 
 export default function MyGroup() {
   const users = useSelector((state: RootState) => state.user);
   const [toggleAllTransactions, setToggleAllTransactions] = useState(false);
   const [toggleAddUser, setToggleAddUser] = useState(false);
+  console.log(users.users);
 
   const handleToggleAllTransactions = () => {
     setToggleAllTransactions(!toggleAllTransactions);

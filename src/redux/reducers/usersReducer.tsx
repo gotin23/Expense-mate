@@ -48,9 +48,31 @@ const userSlice = createSlice({
         }
       });
     },
+    deleteUser: (state, action: PayloadAction<{ name: string }>) => {
+      const userToDelete = action.payload;
+
+      // Filtrer le tableau des utilisateurs pour exclure l'utilisateur à supprimer
+      state.users = state.users.filter((user) => user.name !== userToDelete.name);
+
+      // Mettre à jour les autres utilisateurs pour supprimer les propriétés correspondantes
+      state.users.forEach((user) => {
+        if (user.name !== userToDelete.name) {
+          delete user["to" + userToDelete.name];
+        }
+      });
+
+      // Mettre à jour les transactions existantes pour exclure les références à l'utilisateur supprimé
+      state.allTransactions = state.allTransactions.filter((transaction) => {
+        return transaction.from !== "to" + userToDelete.name && !transaction.participants.includes("to" + userToDelete.name);
+      });
+      state.users = state.users.map((user, index) => ({
+        ...user,
+        id: index,
+      }));
+    },
   },
 });
 
-export const { addUser, addDebt, addPayment } = userSlice.actions;
+export const { addUser, addDebt, addPayment, deleteUser } = userSlice.actions;
 
 export default userSlice.reducer;
