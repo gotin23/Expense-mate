@@ -5,9 +5,9 @@ import { addUser } from "@/redux/reducers/usersReducer";
 import { RootState } from "../../Types/types";
 import { User } from "../../Types/types";
 import Link from "next/link";
+import styles from "../../src/styles/AddUserToGroup.module.css";
 import { AddUserToGroupProps } from "../../Types/types";
-export default function AddUserToGroup({ props }: AddUserToGroupProps) {
-  console.log(props);
+export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
   const users = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
@@ -15,41 +15,33 @@ export default function AddUserToGroup({ props }: AddUserToGroupProps) {
   const [userWaiting, setUserWaiting] = useState(1);
   const names: string[] = users.users.map((user) => user.name);
 
-  const [name, setName] = useState("User1");
+  const [name, setName] = useState("User");
 
   const HandleAddUser = () => {
-    if (userWaiting <= props) {
-      setTimeout(() => {
-        dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [] }), {}) }));
-        setUserWaiting(userWaiting + 1);
+    if (!names.includes(name) && users.users.length < 10 && name.length < 13) {
+      dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [] }), {}) }));
+      setUserWaiting(userWaiting + 1);
 
-        setName("User" + (userWaiting + 1));
-      }, 200);
+      setToggle(false);
+
       console.log(users);
-    } else {
-      console.log("trop");
     }
   };
-  console.log(props);
 
   return (
-    <div>
-      {userWaiting <= props ? (
-        <>
+    <div className={styles["form-container"]}>
+      <form>
+        {" "}
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        <button type="button" className={styles["btn-add"]} onClick={HandleAddUser}>
           {" "}
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-          <button type="button" onClick={HandleAddUser}>
-            {" "}
-            Add!
-          </button>
-        </>
-      ) : (
-        <>
-          <p>Your group have been create!</p>
-          <Link href="/MyGroup">See my group</Link>
-        </>
-      )}
+          Add!
+        </button>
+        <button className={styles["btn-close"]} onClick={() => setToggle(false)}>
+          X
+        </button>
+      </form>
     </div>
   );
 }

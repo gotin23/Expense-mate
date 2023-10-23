@@ -29,7 +29,7 @@ const userSlice = createSlice({
     addPayment: (state, action: PayloadAction<{ payment: number; from: number; participants: string[]; date: string; category: string; fromName: string }>) => {
       const { payment, from, participants, date, category, fromName } = action.payload;
       state.users[from].payment.push({ payment: payment, participants: participants, date: date });
-      state.allTransactions.push({ payment: payment, participants: participants, date: date, category: category, from: fromName });
+      state.allTransactions.unshift({ payment: payment, participants: participants, date: date, category: category, from: fromName });
     },
 
     addDebt: (state, action: PayloadAction<{ toUser: string; date: string; valueOfDebt: number; participantsToDebt: string[]; category: string }>) => {
@@ -47,7 +47,6 @@ const userSlice = createSlice({
           }
         }
       });
-      console.log(date, participantsToDebt, valueOfDebt, action.payload);
     },
   },
 });

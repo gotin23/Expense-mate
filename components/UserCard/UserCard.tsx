@@ -1,16 +1,19 @@
 import React from "react";
 import styles from "../../src/styles/UserCard.module.css";
 import { useState, ChangeEvent } from "react";
+import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { UseSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "../../Types/types";
 import { addDebt, addPayment } from "@/redux/reducers/usersReducer";
 import { UserCardProps } from "../../Types/types";
+import DebtModale from "../DebtModale/DebtModale";
 
 export default function UserCard({ props }: UserCardProps) {
   const dispatch = useDispatch();
   const users = useSelector((state: RootState) => state.user);
   const names: string[] = users.users.map((user) => user.name);
+  const activeForm = useRef("");
 
   interface Options {
     label: string;
@@ -24,11 +27,15 @@ export default function UserCard({ props }: UserCardProps) {
 
   const [options, setOptions] = useState<Options[]>(initialOptions);
   const [toggleForm, setToggleForm] = useState(false);
+  const [toggleDebtModale, setToggleDebtModale] = useState(false);
   const [amount, setAmount] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
   const togglePaymentForm = () => {
     setToggleForm(!toggleForm);
+  };
+  const openDebtModale = () => {
+    setToggleDebtModale(true);
   };
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -76,48 +83,66 @@ export default function UserCard({ props }: UserCardProps) {
   };
 
   return (
-    <div className={styles.card}>
-      <h2>{props.name}</h2>
-      <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
-        Payment
-      </button>
-      {toggleForm && (
-        <div className={styles.form}>
-          <label htmlFor="amount">Amount</label>
-          <input type="number" id="amount" className={styles["input-number"]} onChange={handleInputAmount} />
-          <div className={styles["checkbox-container"]}>
-            {names.map((name, index) => (
-              <div key={index}>
-                <label htmlFor="user-checkbox">{name}</label>
-                <input
-                  type="checkbox"
-                  id={`user-checkbox-${index}`}
-                  readOnly={props.name === name ? true : false}
-                  checked={props.name !== name ? options[index]?.isChecked : true}
-                  onChange={props.name === name ? undefined : () => handleCheckBoxChange(index)}
-                />
-              </div>
-            ))}
-          </div>
-          <label>Category</label>
-          <select value={selectedOption} onChange={handleSelectChange}>
-            <option value="void">-- Select an option --</option>
-            <option value="Food">Food</option>
-            <option value="Accomodation">Accomodation</option>
-            <option value="Transportation">Transportation</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Utilities">Utilities</option>
-            <option value="Gifts">Gifts</option>
-            <option value="Alcohol">Alcohol</option>
-            <option value="Bills">Bills</option>
-            <option value="Sport and fitness">Sport and fitness</option>
-          </select>
-          <button type="submit" onClick={handlePayment}>
-            Pay!
+    <>
+      {toggleDebtModale && <DebtModale id={props.id} name={props.name} setToggle={setToggleDebtModale} />}
+      <div className={`${styles.card} ${toggleForm ? styles.active : ""}`}>
+        <div className={styles["title-and-btns"]}>
+          <h2>{props.name}</h2>
+          <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
+            Payment
+          </button>
+          <button type="button" className={styles["btn-debt"]} onClick={openDebtModale}>
+            Debts & Credits
           </button>
         </div>
-      )}
-    </div>
+
+        {toggleForm && (
+          <div className={`${styles.form} ${styles.fadeIn}`}>
+            <div className={styles["amount-container"]}>
+              <label htmlFor="amount">Amount:</label>
+              <input type="number" id="amount" className={styles["input-number"]} onChange={handleInputAmount} />
+            </div>
+
+            <div className={styles["checkbox-container"]}>
+              <p className={styles["form-participants"]}>Participants:</p>
+              {names.map((name, index) => (
+                <div key={index} className={styles["label-and-checkbox"]}>
+                  <label htmlFor="user-checkbox">{name}:</label>
+                  <input
+                    type="checkbox"
+                    id={`user-checkbox-${index}`}
+                    readOnly={props.name === name ? true : false}
+                    checked={props.name !== name ? options[index]?.isChecked : true}
+                    onChange={props.name === name ? undefined : () => handleCheckBoxChange(index)}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className={styles["category-and-pay"]}>
+              <div>
+                <label>Category</label>
+                <select value={selectedOption} onChange={handleSelectChange}>
+                  <option value="void">-- Select an option --</option>
+                  <option value="Food">Food</option>
+                  <option value="Accomodation">Accomodation</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Gifts">Gifts</option>
+                  <option value="Alcohol">Alcohol</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Sport and fitness">Sport and fitness</option>
+                </select>
+              </div>
+
+              <button type="submit" className={styles["btn-pay"]} onClick={handlePayment}>
+                Pay!
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

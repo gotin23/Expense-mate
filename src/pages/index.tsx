@@ -9,6 +9,7 @@ import { addUser } from "@/redux/reducers/usersReducer";
 import { RootState } from "../../Types/types";
 import { ChangeEvent, useState } from "react";
 import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
+import MyGroup from "../../components/MyGroup/MyGroup";
 
 export default function Home() {
   // const users = useSelector((state: RootState) => state.user);
@@ -48,7 +49,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Expense Mate</h1>
 
-        <div className={styles["home-content"]}>
+        {/* <div className={styles["home-content"]}>
           {createGroupStep === 0 && (
             <>
               <h2>Create a new group?</h2>
@@ -68,7 +69,8 @@ export default function Home() {
               <AddUserToGroup props={numberOfPeople} />
             </>
           )}
-        </div>
+        </div> */}
+        <MyGroup />
       </main>
     </>
   );

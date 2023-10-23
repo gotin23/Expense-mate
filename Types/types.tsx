@@ -1,11 +1,8 @@
-// import { User } from "@/redux/reducers/usersReducer";
-
 export interface User {
   id: number;
   name: string;
   payment: any[];
   [key: string]: any;
-  // Autres propriétés d'utilisateur
 }
 
 export interface RootState {
@@ -16,8 +13,15 @@ export interface RootState {
 }
 
 export type AddUserToGroupProps = {
-  props: number;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export type ModaleDebtProps = {
+  id: number;
+  name: string;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 export type Transaction = {
   payment: number;
   participants: string[];
@@ -25,6 +29,7 @@ export type Transaction = {
   category: string;
   from: string;
 };
+
 export type TransactionProps = {
   props: {
     payment: number;
@@ -34,9 +39,6 @@ export type TransactionProps = {
     from: string;
   };
 };
-// export type TransactionProps = {
-//   transaction: Transaction;
-// };
 
 export interface UserCardProps {
   key: number;
