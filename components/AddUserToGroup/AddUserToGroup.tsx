@@ -21,7 +21,7 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
 
   const HandleAddUser = () => {
     if (!names.includes(name) && users.users.length < 10 && name.length < 13) {
-      dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [] }), {}) }));
+      dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [{ refund: 0 }] }), {}) }));
       setUserWaiting(userWaiting + 1);
 
       setToggle(false);
@@ -36,7 +36,7 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
         {" "}
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
-        <button type="button" className={styles["btn-add"]} onClick={HandleAddUser}>
+        <button type="submit" className={styles["btn-add"]} onClick={HandleAddUser}>
           {" "}
           Add!
         </button>

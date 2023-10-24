@@ -21,14 +21,14 @@ const userSlice = createSlice({
       // Modifier chaque utilisateur existant en ajoutant une nouvelle propriété
       state.users = state.users.map((user) => ({
         ...user,
-        ["to" + action.payload.name]: [],
+        ["to" + action.payload.name]: [{ refund: 0 }],
       }));
       state.users.push(action.payload);
     },
 
     addPayment: (state, action: PayloadAction<{ payment: number; from: number; participants: string[]; date: string; category: string; fromName: string }>) => {
       const { payment, from, participants, date, category, fromName } = action.payload;
-      state.users[from].payment.push({ payment: payment, participants: participants, date: date });
+      state.users[from].payment.unshift({ payment: payment, participants: participants, date: date });
       state.allTransactions.unshift({ payment: payment, participants: participants, date: date, category: category, from: fromName });
     },
 
@@ -73,9 +73,14 @@ const userSlice = createSlice({
         id: index,
       }));
     },
+    addRefund: (state, action: PayloadAction<{ id: number; valueToRefund: number; userToRefund: "string" }>) => {
+      const { id, valueToRefund, userToRefund } = action.payload;
+      console.log(state.users[id], id, valueToRefund, userToRefund);
+      state.users[id]["to" + userToRefund][0].refund = state.users[id]["to" + userToRefund][0].refund + valueToRefund;
+    },
   },
 });
 
-export const { addUser, addDebt, addPayment, deleteUser } = userSlice.actions;
+export const { addUser, addDebt, addPayment, deleteUser, addRefund } = userSlice.actions;
 
 export default userSlice.reducer;

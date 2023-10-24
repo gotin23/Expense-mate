@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../../src/styles/AllTransaction.module.css";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import { useSelector } from "react-redux";
@@ -12,9 +12,6 @@ export default function AllTransactions() {
   const [selectedOption, setSelectedOption] = useState("all-Users");
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 6;
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedOption]);
 
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
@@ -89,70 +86,3 @@ export default function AllTransactions() {
     </>
   );
 }
-// import React from "react";
-// import { useState } from "react";
-// import styles from "../../src/styles/AllTransaction.module.css";
-// import TransactionCard from "../TransactionCard/TransactionCard";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../Types/types";
-
-// export default function AllTransactions() {
-//   const users = useSelector((state: RootState) => state.user);
-//   const names: string[] = users.users.map((user) => user.name);
-//   names.unshift("all-Users");
-//   const [selectedOption, setSelectedOption] = useState("all-Users");
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const transactionsPerPage = 6;
-
-//   const indexOfLastTransaction = currentPage * transactionsPerPage;
-//   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
-//   const currentTransactions = users.allTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
-
-//   const totalPayment = currentTransactions.reduce((total, transaction) => {
-//     return total + transaction.payment;
-//   }, 0);
-//   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-//     setSelectedOption(event.target.value);
-//     setCurrentPage(1);
-//   };
-//   return (
-//     <>
-//       <div className={styles["all-transactions-container"]}>
-//         <div>
-//           <label>Users</label>
-//           <select value={selectedOption} onChange={handleSelectChange}>
-//             {names.map((name) => (
-//               <option key={name} value={name}>
-//                 {name}
-//               </option>
-//             ))}
-//           </select>
-//         </div>
-//         {currentTransactions.map((transaction, index) => (
-//           <TransactionCard
-//             key={index}
-//             props={{
-//               payment: transaction.payment,
-//               participants: transaction.participants,
-//               date: transaction.date,
-//               category: transaction.category,
-//               from: transaction.from,
-//             }}
-//           />
-//         ))}
-
-//         <div className={styles.pagination}>
-//           {users.allTransactions.length > transactionsPerPage && (
-//             <ul>
-//               {Array.from({ length: Math.ceil(users.allTransactions.length / transactionsPerPage) }).map((_, i) => (
-//                 <li key={i}>
-//                   <button onClick={() => setCurrentPage(i + 1)}>{i + 1}</button>
-//                 </li>
-//               ))}
-//             </ul>
-//           )}
-//         </div>
-//       </div>
-//     </>
-//   );
-// }

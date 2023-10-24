@@ -7,6 +7,7 @@
     transition: height 0.4s ease-in;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     /* background-color: brown; */
     /* transition: min-height 1s ease-in ; */
     /* justify-content: center; */
@@ -117,8 +118,8 @@ align-items: center;
 .fadeIn {
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;
-    -webkit-animation-duration: 2s;
-    animation-duration: 2s;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
     }

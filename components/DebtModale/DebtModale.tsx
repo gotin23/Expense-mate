@@ -1,13 +1,18 @@
 import React from "react";
 import styles from "../../src/styles/DebtModale.module.css";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Types/types";
 import { ModaleDebtProps } from "../../Types/types";
+import { addRefund } from "../../src/redux/reducers/usersReducer";
 
 export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
   const users = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  const [toggleRefundForm, setToggleRefundForm] = useState(false);
+  const [userToRefund, setUserToRefund] = useState("");
+  const [valueToRefund, setValueToRefund] = useState(0);
 
-  console.log(users.users[id], "gege");
   //   const array = Object.keys(users.users[id]);
   //   const arrayNames = array.filter((item) => item.startsWith("to") && users.users[id][item].length > 0);
   type TransactionItem = {
@@ -41,31 +46,60 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
       return { name: user.name, totalValueOfDebt: 0 };
     }
   });
+  const handleToggleRefundModale = (toRefund: string) => {
+    setToggleRefundForm(!toggleRefundForm);
+    setUserToRefund(toRefund);
+  };
+  const handleValueToRefund = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    setValueToRefund(e.target.value);
+  };
+  const handleRefund = () => {
+    dispatch(addRefund({ id: id, valueToRefund: parseInt(valueToRefund), userToRefund: userToRefund }));
+  };
+
+  console.log(users.users[0]["toUser2"], userToRefund, "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
 
   return (
-    <div className={styles["modale-container"]}>
-      <h2>FriendWallet:</h2>
-      <div className={styles.modale}>
-        <button type="button" className={styles["btn-toggle-modale"]} onClick={() => setToggle(false)}>
-          X
-        </button>
-        <h2>Debt Dashboard:</h2>
-        <ul>
-          {totalDebt.map((result, index) => {
-            const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
-            if (isNaN(debtDifference)) {
-              return null; // Ne rien retourner si debtDifference est NaN
-            }
+    <>
+      {toggleRefundForm && (
+        <div className={styles["modale-refund-container"]}>
+          {
+            <div className={styles["modale-refund"]}>
+              <button onClick={() => setToggleRefundForm(!toggleRefundForm)}>X</button>
+              <label htmlFor="number">Amount to refund:</label>
+              <input type="number" id="number" value={valueToRefund} onChange={handleValueToRefund} />
+              <button type="button" onClick={handleRefund}>
+                Refund
+              </button>
+            </div>
+          }
+        </div>
+      )}
+      <div className={styles["modale-container"]}>
+        <h2>FriendWallet:</h2>
+        <div className={styles.modale}>
+          <button type="button" className={styles["btn-toggle-modale"]} onClick={() => setToggle(false)}>
+            X
+          </button>
+          <h2>Debt Dashboard:</h2>
+          <ul>
+            {totalDebt.map((result, index) => {
+              const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
+              if (isNaN(debtDifference)) {
+                return null; // Ne rien retourner si debtDifference est NaN
+              }
 
-            return (
-              <li key={index} className={debtDifference === 0 ? "" : debtDifference >= 0 ? styles.negative : styles.positive}>
-                <span>{`${result.name}: `}</span>
-                {debtDifference}
-              </li>
-            );
-          })}
-        </ul>
+              return (
+                <li key={index} className={debtDifference === 0 ? "" : debtDifference >= 0 ? styles.negative : styles.positive}>
+                  <span>{`${result.name}: `}</span>
+                  {debtDifference - users.users[id]["to" + result.name][0].refund}
+                  {debtDifference > 0 && <button onClick={() => handleToggleRefundModale(result.name)}>Refund</button>}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

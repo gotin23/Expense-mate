@@ -22,6 +22,7 @@ export default function UserCard({ props }: UserCardProps) {
       isChecked: true,
     }));
     setOptions(updatedOptions);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
 
   interface Options {
