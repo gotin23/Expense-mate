@@ -34,6 +34,14 @@
 
   
 }
+.search{
+    width: 100%;
+    margin: 10px 0;
+}
+.search select{
+    height: 25px;
+    width: 100px;
+}
 .pagination{
     position: absolute;
     bottom: 0;

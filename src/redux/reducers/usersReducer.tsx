@@ -60,6 +60,9 @@ const userSlice = createSlice({
           delete user["to" + userToDelete.name];
         }
       });
+      state.allTransactions = state.allTransactions.filter((transaction) => {
+        return transaction.from !== userToDelete.name;
+      });
 
       // Mettre à jour les transactions existantes pour exclure les références à l'utilisateur supprimé
       state.allTransactions = state.allTransactions.filter((transaction) => {

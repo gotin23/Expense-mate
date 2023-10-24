@@ -6,7 +6,6 @@ import UserCard from "../../components/UserCard/UserCard";
 import styles from "../../src/styles/MyGroup.module.css";
 import AllTransactions from "../../components/AllTransactions/AllTransactions";
 import AddUserToGroup from "../AddUserToGroup/AddUserToGroup";
-import { v4 as uuidv4 } from "uuid";
 
 export default function MyGroup() {
   const users = useSelector((state: RootState) => state.user);
@@ -30,14 +29,14 @@ export default function MyGroup() {
             Add user +
           </button>
           <button type="button" className={styles["btn-all-transactions"]} onClick={handleToggleAllTransactions}>
-            {toggleAllTransactions ? "All transactions" : "Back"}
+            {!toggleAllTransactions ? "All transactions" : "Back"}
           </button>
         </div>
 
         {toggleAddUser && <AddUserToGroup setToggle={setToggleAddUser} />}
         {users.users.length > 0 ? (
           <>
-            {toggleAllTransactions ? (
+            {!toggleAllTransactions ? (
               <div className={styles["my-group-container"]}>
                 {users.users.map((user) => (
                   <UserCard key={user.id} props={user} />
