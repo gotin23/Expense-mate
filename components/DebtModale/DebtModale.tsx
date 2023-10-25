@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../src/styles/DebtModale.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Types/types";
 import { ModaleDebtProps } from "../../Types/types";
@@ -11,8 +11,9 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
   const dispatch = useDispatch();
   const [toggleRefundForm, setToggleRefundForm] = useState(false);
   const [userToRefund, setUserToRefund] = useState("");
-  const [valueToRefund, setValueToRefund] = useState(0);
-
+  const [valueToRefund, setValueToRefund] = useState("");
+  const [debtAmount, setDebtAmount] = useState(0);
+  // useEffect(() => {}, [users]);
   //   const array = Object.keys(users.users[id]);
   //   const arrayNames = array.filter((item) => item.startsWith("to") && users.users[id][item].length > 0);
   type TransactionItem = {
@@ -46,15 +47,20 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
       return { name: user.name, totalValueOfDebt: 0 };
     }
   });
-  const handleToggleRefundModale = (toRefund: string) => {
+  const handleToggleRefundModale = (toRefund: string, debt: number) => {
     setToggleRefundForm(!toggleRefundForm);
     setUserToRefund(toRefund);
+    setDebtAmount(debt);
   };
   const handleValueToRefund = (e: SyntheticInputEvent<HTMLInputElement>) => {
     setValueToRefund(e.target.value);
   };
   const handleRefund = () => {
-    dispatch(addRefund({ id: id, valueToRefund: parseInt(valueToRefund), userToRefund: userToRefund }));
+    if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseInt(valueToRefund)) {
+      console.log(users.users[id]["to" + userToRefund][0].refund);
+      dispatch(addRefund({ id: id, valueToRefund: parseInt(valueToRefund), userToRefund: userToRefund }));
+      setToggleRefundForm(false);
+    }
   };
 
   console.log(users.users[0]["toUser2"], userToRefund, "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
@@ -85,6 +91,8 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
           <ul>
             {totalDebt.map((result, index) => {
               const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
+              const user = users.users.filter((el) => el.name === result.name);
+              console.log(user);
               if (isNaN(debtDifference)) {
                 return null; // Ne rien retourner si debtDifference est NaN
               }
@@ -92,8 +100,8 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
               return (
                 <li key={index} className={debtDifference === 0 ? "" : debtDifference >= 0 ? styles.negative : styles.positive}>
                   <span>{`${result.name}: `}</span>
-                  {debtDifference - users.users[id]["to" + result.name][0].refund}
-                  {debtDifference > 0 && <button onClick={() => handleToggleRefundModale(result.name)}>Refund</button>}
+                  {debtDifference > 0 ? debtDifference - users.users[id]["to" + result.name][0].refund : debtDifference + users.users[user[0].id]["to" + name][0].refund}
+                  {debtDifference > 0 && <button onClick={() => handleToggleRefundModale(result.name, debtDifference)}>Refund</button>}
                 </li>
               );
             })}

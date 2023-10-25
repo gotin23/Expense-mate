@@ -103,7 +103,9 @@ export default function UserCard({ props }: UserCardProps) {
         <div className={`${styles.card} ${toggleForm ? styles.active : ""}`}>
           <div className={styles["title-and-btns"]}>
             <h2>{props.name}</h2>
-            <button onClick={handleDeleteUser}>Delete</button>
+            <button onClick={handleDeleteUser} className={styles["btn-delete"]}>
+              Delete user!
+            </button>
             <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
               Make Payment!
             </button>
