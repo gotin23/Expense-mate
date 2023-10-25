@@ -68,7 +68,7 @@ export default function UserCard({ props }: UserCardProps) {
 
   const handlePayment = () => {
     // le montant
-    const payment = parseInt(amount);
+    const payment = parseFloat(amount);
     // les personne presente sur cette transaction et leur nombre
     const participantsObject = options.filter((el) => el.isChecked === true);
     const participants = participantsObject.map((participant) => participant.label);

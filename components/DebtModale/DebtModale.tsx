@@ -56,9 +56,9 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
     setValueToRefund(e.target.value);
   };
   const handleRefund = () => {
-    if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseInt(valueToRefund)) {
+    if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseFloat(valueToRefund)) {
       console.log(users.users[id]["to" + userToRefund][0].refund);
-      dispatch(addRefund({ id: id, valueToRefund: parseInt(valueToRefund), userToRefund: userToRefund }));
+      dispatch(addRefund({ id: id, valueToRefund: parseFloat(valueToRefund), userToRefund: userToRefund }));
       setToggleRefundForm(false);
     }
   };
@@ -92,16 +92,26 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
             {totalDebt.map((result, index) => {
               const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
               const user = users.users.filter((el) => el.name === result.name);
-              console.log(user);
+              const debtResult = isNaN(debtDifference) ? null : debtDifference - users.users[id]["to" + result.name][0].refund;
+              const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0].id]["to" + name][0].refund;
+              console.log(debtResult + creditresult, "c la qui fo regard", debtResult, creditresult, typeof creditresult + debtResult);
+
               if (isNaN(debtDifference)) {
                 return null; // Ne rien retourner si debtDifference est NaN
               }
 
               return (
-                <li key={index} className={debtDifference === 0 ? "" : debtDifference >= 0 ? styles.negative : styles.positive}>
-                  <span>{`${result.name}: `}</span>
-                  {debtDifference > 0 ? debtDifference - users.users[id]["to" + result.name][0].refund : debtDifference + users.users[user[0].id]["to" + name][0].refund}
-                  {debtDifference > 0 && <button onClick={() => handleToggleRefundModale(result.name, debtDifference)}>Refund</button>}
+                <li key={index}>
+                  {<span>{`${result.name}: `}</span>}
+
+                  {debtDifference > 0 && debtResult !== 0 ? "Debt:" + "" + debtResult?.toFixed(2) : ""}
+                  {debtDifference < 0 && creditresult !== 0 ? "Credit:" + "" + creditresult.toFixed(2) : ""}
+                  {creditresult === 0 && "0.00"}
+                  {debtResult === 0 && "0.00"}
+
+                  {debtDifference - users.users[id]["to" + result.name][0].refund > 0 && (
+                    <button onClick={() => handleToggleRefundModale(result.name, debtDifference)}>Refund</button>
+                  )}
                 </li>
               );
             })}
