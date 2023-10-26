@@ -9,6 +9,7 @@ import styles from "@/styles/Home.module.css";
 // import { RootState } from "../../Types/types";
 // import { ChangeEvent, useState } from "react";
 // import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
+import { Analytics } from "@vercel/analytics/react";
 import MyGroup from "../../components/MyGroup/MyGroup";
 
 export default function Home() {
@@ -24,6 +25,11 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Expense Mate</h1>
         <MyGroup />
+        <Analytics
+        // id="UA-170400000-1"
+        // page="https://expense-mate.vercel.app/"
+        // title="Expense Mate"
+        />
       </main>
     </>
   );
