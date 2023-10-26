@@ -9,7 +9,7 @@ export interface UserState {
 
 const initialState: UserState = {
   users: [],
-  allTransactions: [{ payment: 100, participants: ["Hugo", "Seb", "Max"], date: "20-10-23", category: "Food", from: "Joe" }],
+  allTransactions: [],
 };
 
 const userSlice = createSlice({
@@ -73,10 +73,11 @@ const userSlice = createSlice({
         id: index,
       }));
     },
-    addRefund: (state, action: PayloadAction<{ id: number; valueToRefund: number; userToRefund: "string" }>) => {
-      const { id, valueToRefund, userToRefund } = action.payload;
-      console.log(state.users[id], id, valueToRefund, userToRefund);
-      state.users[id]["to" + userToRefund][0].refund = state.users[id]["to" + userToRefund][0].refund + valueToRefund;
+    addRefund: (state, action: PayloadAction<{ id: number; valueToRefund: number; userRefund: string; from: string; date: string }>) => {
+      const { id, valueToRefund, userRefund, from, date } = action.payload;
+      console.log(state.users[id], id, valueToRefund, userRefund);
+      state.users[id]["to" + userRefund][0].refund = state.users[id]["to" + userRefund][0].refund + valueToRefund;
+      state.allTransactions.unshift({ payment: valueToRefund, participants: [userRefund], date: date, category: "Refund", from: from });
     },
   },
 });

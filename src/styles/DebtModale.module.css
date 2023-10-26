@@ -1,7 +1,7 @@
 .modale-container{
     position: absolute;
     inset: 0 ;
-    background-color: var(--color-primary);
+    /* background-color: var(--color-primary); */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,6 +20,8 @@
     background-color:var(--color-secondary);
     position: relative;
     border: 3px solid var(--color-tertiary);
+    margin-top: 245px;
+    border-radius: 0px 20px 20px 20px;
 }
 .btn-toggle-modale{
     position: absolute;

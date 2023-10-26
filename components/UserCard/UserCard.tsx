@@ -11,12 +11,12 @@ import DebtModale from "../DebtModale/DebtModale";
 
 export default function UserCard({ props }: UserCardProps) {
   const dispatch = useDispatch();
+  const [toggleDelete, setToggleDelete] = useState(false);
 
   const users = useSelector((state: RootState) => state.user);
 
   const names: string[] = users.users.map((user) => user.name);
   useEffect(() => {
-    // const names: string[] = users.users.map((user) => user.name);
     const updatedOptions = names.map((name) => ({
       label: name,
       isChecked: true,
@@ -103,9 +103,16 @@ export default function UserCard({ props }: UserCardProps) {
         <div className={`${styles.card} ${toggleForm ? styles.active : ""}`}>
           <div className={styles["title-and-btns"]}>
             <h2>{props.name}</h2>
-            <button onClick={handleDeleteUser} className={styles["btn-delete"]}>
+            <button onClick={() => setToggleDelete(!toggleDelete)} className={styles["btn-delete"]}>
               Delete user!
             </button>
+            {toggleDelete && (
+              <div className={styles["toggle-delete"]}>
+                <p>Are you sure to delete that user?</p>
+                <button onClick={handleDeleteUser}>Yes</button>
+                <button onClick={() => setToggleDelete(!toggleDelete)}>No</button>
+              </div>
+            )}
             <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
               Make Payment!
             </button>

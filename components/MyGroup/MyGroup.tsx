@@ -11,7 +11,6 @@ export default function MyGroup() {
   const users = useSelector((state: RootState) => state.user);
   const [toggleAllTransactions, setToggleAllTransactions] = useState(false);
   const [toggleAddUser, setToggleAddUser] = useState(false);
-  console.log(users.users);
 
   const handleToggleAllTransactions = () => {
     setToggleAllTransactions(!toggleAllTransactions);
@@ -19,6 +18,7 @@ export default function MyGroup() {
   const handleToggleAddUser = () => {
     setToggleAddUser(!toggleAddUser);
   };
+
   return (
     <div>
       <div className={styles.container}>

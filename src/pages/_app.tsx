@@ -10,14 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Provider store={store}>
         <div className={styles["all-content"]}>
-          <header>
-            <Navbar />
-          </header>
           <Component {...pageProps} />
-
-          <header>
-            <Navbar />
-          </header>
         </div>
       </Provider>
     </>

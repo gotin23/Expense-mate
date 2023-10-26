@@ -29,7 +29,7 @@ export default function AllTransactions() {
     <>
       <div className={styles["all-transactions-container"]}>
         <div className={styles.search}>
-          <label>Users</label>
+          <label>Select a user:</label>
           <select value={selectedOption} onChange={handleSelectChange}>
             {names.map((name) => (
               <option key={name} value={name}>
@@ -38,18 +38,22 @@ export default function AllTransactions() {
             ))}
           </select>
         </div>
-        {filteredTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction).map((transaction, index) => (
-          <TransactionCard
-            key={index}
-            props={{
-              payment: transaction.payment,
-              participants: transaction.participants,
-              date: transaction.date,
-              category: transaction.category,
-              from: transaction.from,
-            }}
-          />
-        ))}
+        {filteredTransactions.length > 0 ? (
+          filteredTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction).map((transaction, index) => (
+            <TransactionCard
+              key={index}
+              props={{
+                payment: transaction.payment,
+                participants: transaction.participants,
+                date: transaction.date,
+                category: transaction.category,
+                from: transaction.from,
+              }}
+            />
+          ))
+        ) : (
+          <p>No transactions made</p>
+        )}
 
         <div className={styles.pagination}>
           {filteredTransactions.length > transactionsPerPage && (

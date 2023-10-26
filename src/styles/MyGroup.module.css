@@ -28,15 +28,18 @@ color: var(--color-tertiary);
     height: 700px;  
     background-color: var(--color-secondary);
     overflow-y: scroll;
+    border-radius: 0px 20px 20px 20px ;
    
 }
 .empty{
     width: 650px;
     height: 700px;
+    border: 3px solid var(--color-tertiary);
     color: var(--color-tertiary);
     font-size: 40px;
     background-color: var(--color-secondary);
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 0px 20px 20px 20px ;
 }

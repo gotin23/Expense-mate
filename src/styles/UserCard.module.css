@@ -3,7 +3,7 @@
     color: var(--color-tertiary);
     border-bottom: 3px solid var(--color-tertiary);
     height: 120px;
-    /* position: relative; */
+    position: relative;
     transition: height 0.4s ease-in;
     display: flex;
     flex-direction: column;
@@ -102,6 +102,11 @@ align-items: center;
     justify-content: space-between;
     align-items: center;
     padding: 0px  10px;
+}
+.toggle-delete{
+    position: absolute;
+    background-color: var(--color-secondary);
+    inset: 0;
 }
 
 

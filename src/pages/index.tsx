@@ -1,42 +1,17 @@
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import styles from "@/styles/Home.module.css";
-import Link from "next/link";
-import Navbar from "../../components/Navbar/Navbar";
-import { UserState } from "@/redux/reducers/usersReducer";
-import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "@/redux/reducers/usersReducer";
-import { RootState } from "../../Types/types";
-import { ChangeEvent, useState } from "react";
-import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
+// import Link from "next/link";
+// import Navbar from "../../components/Navbar/Navbar";
+// import { UserState } from "@/redux/reducers/usersReducer";
+// import { useDispatch, useSelector } from "react-redux";
+// import { addUser } from "@/redux/reducers/usersReducer";
+// import { RootState } from "../../Types/types";
+// import { ChangeEvent, useState } from "react";
+// import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
 import MyGroup from "../../components/MyGroup/MyGroup";
 
 export default function Home() {
-  // const users = useSelector((state: RootState) => state.user);
-  const [createGroupStep, setCreateGroupStep] = useState(0);
-  const [numberOfPeople, setNumberOfPeople] = useState(2);
-  const [addUserOnGroup, setAddUserOngroup] = useState(1);
-  // console.log(numberOfPeople);
-  // const dispatch = useDispatch();
-
-  // console.log(users.users);
-
-  // const names: string[] = users.users.map((user) => user.name);
-
-  const handleStepCreateGroup = () => {
-    setCreateGroupStep(createGroupStep + 1);
-  };
-
-  const handleNumberOfPeople = (e: ChangeEvent<HTMLInputElement>) => {
-    const nbPeople: number = parseInt(e.target.value);
-    console.log(typeof nbPeople);
-    setNumberOfPeople(nbPeople);
-  };
-
-  // const HandleAddUser = () => {
-  //   dispatch(addUser({ id: users.users.length, name: "polo", ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: 0 }), {}) }));
-  // };
-
   return (
     <>
       <Head>
@@ -48,28 +23,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Expense Mate</h1>
-
-        {/* <div className={styles["home-content"]}>
-          {createGroupStep === 0 && (
-            <>
-              <h2>Create a new group?</h2>
-              <button onClick={handleStepCreateGroup}>Go!</button>
-            </>
-          )}
-          {createGroupStep === 1 && (
-            <>
-              <h2>How many people?</h2>
-              <input type="number" min="2" max="10" value={numberOfPeople} onChange={handleNumberOfPeople} />
-              <button onClick={handleStepCreateGroup}>Go!</button>
-            </>
-          )}
-          {createGroupStep === 2 && (
-            <>
-              <h2>Your group!</h2>
-              <AddUserToGroup props={numberOfPeople} />
-            </>
-          )}
-        </div> */}
         <MyGroup />
       </main>
     </>

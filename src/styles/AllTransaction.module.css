@@ -8,7 +8,7 @@
     align-content: flex-start;
     justify-content:space-around;
     flex-wrap: wrap;
-
+    color: var(--color-primary);
     padding: 5px;
     position: relative;
 
@@ -37,6 +37,9 @@
 .search{
     width: 100%;
     margin: 10px 0;
+}
+.search label{
+    margin-right: 10px;
 }
 .search select{
     height: 25px;
