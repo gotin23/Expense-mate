@@ -27,7 +27,7 @@ color: var(--color-tertiary);
     width: 650px;
     height: 700px;  
     background-color: var(--color-secondary);
-    overflow-y: scroll;
+    overflow-y: auto;
     border-radius: 0px 20px 20px 20px ;
    
 }

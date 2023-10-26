@@ -25,7 +25,7 @@ color: var(--color-tertiary);
 }
 .transaction-card ul{
 display: flex;
-overflow-x: scroll;
+overflow-x: auto;
 }
 .transaction-card li{
 color: var(--color-primary);
