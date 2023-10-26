@@ -94,6 +94,7 @@ export default function UserCard({ props }: UserCardProps) {
   };
   const handleDeleteUser = () => {
     dispatch(deleteUser({ name: props.name }));
+    setToggleDelete(!toggleDelete);
   };
   console.log(users.users);
   return (

@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import Navbar from "../../components/Navbar/Navbar";
+// import Navbar from "../../components/Navbar/Navbar";
 import { Provider } from "react-redux";
 import { store, persistor } from "@/redux/store";
 import styles from "../styles/Home.module.css";
