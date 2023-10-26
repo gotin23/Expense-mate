@@ -80,7 +80,7 @@ export default function UserCard({ props }: UserCardProps) {
       return user ? user.id.toString() : "";
     });
 
-    // ce qu doit chaque personne a celui qui paye
+    // ce que doit chaque personne a celui qui paye
     const valueOfDebt = parseFloat((payment / numberOfParticipants).toFixed(2));
 
     const currentDate = new Date();
@@ -90,6 +90,7 @@ export default function UserCard({ props }: UserCardProps) {
 
     dispatch(addDebt({ toUser: "to" + props.name, date: date, valueOfDebt: valueOfDebt, participantsToDebt: ids, category: selectedOption }));
     dispatch(addPayment({ payment: payment, from: props.id, participants: participants, date: date, category: selectedOption, fromName: props.name }));
+    setToggleForm(!toggleForm);
   };
   const handleDeleteUser = () => {
     dispatch(deleteUser({ name: props.name }));
