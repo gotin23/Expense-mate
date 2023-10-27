@@ -8,6 +8,10 @@ import { RootState } from "../../Types/types";
 import { addDebt, addPayment, deleteUser } from "@/redux/reducers/usersReducer";
 import { UserCardProps } from "../../Types/types";
 import DebtModale from "../DebtModale/DebtModale";
+import Image from "next/image";
+import deleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
+import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
+import debtIcon from "../../public/assets/icons/wallet-svgrepo-com.svg";
 
 export default function UserCard({ props }: UserCardProps) {
   const dispatch = useDispatch();
@@ -105,9 +109,12 @@ export default function UserCard({ props }: UserCardProps) {
         <div className={`${styles.card} ${toggleForm ? styles.active : ""}`}>
           <div className={styles["title-and-btns"]}>
             <h2>{props.name}</h2>
-            <button onClick={() => setToggleDelete(!toggleDelete)} className={styles["btn-delete"]}>
-              Delete user!
-            </button>
+            {/* <button onClick={() => setToggleDelete(!toggleDelete)} className={styles["btn-delete"]}> */}
+            <Image src={deleteIcon} alt="delete-icon" className={styles["delete-icon"]} onClick={() => setToggleDelete(!toggleDelete)}></Image>
+            <Image src={paymentIcon} alt="delete-icon" onClick={togglePaymentForm} className={styles["payment-icon"]}></Image>
+            {/* </button> */}
+            <Image src={debtIcon} alt="delete-icon" onClick={togglePaymentForm} className={styles["debt-icon"]}></Image>
+
             {toggleDelete && (
               <div className={styles["toggle-delete"]}>
                 <p>Are you sure to delete that user?</p>
@@ -115,12 +122,12 @@ export default function UserCard({ props }: UserCardProps) {
                 <button onClick={() => setToggleDelete(!toggleDelete)}>No</button>
               </div>
             )}
-            <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
+            {/* <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
               Make Payment!
-            </button>
-            <button type="button" className={styles["btn-debt"]} onClick={openDebtModale}>
+            </button> */}
+            {/* <button type="button" className={styles["btn-debt"]} onClick={openDebtModale}>
               Debts & Credits
-            </button>
+            </button> */}
           </div>
 
           {toggleForm && (

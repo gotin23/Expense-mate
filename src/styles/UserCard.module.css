@@ -90,13 +90,32 @@ align-items: center;
    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-  min-height: 120px;
+  max-height: 120px;
     width: 100%;
+
     /* background-color: aqua; */
 }
 .title-and-btns h2{
-  width: 33%;
+  width: 25%;
+  font-size: 30px;
 }
+
+.debt-icon,.payment-icon{
+    cursor: pointer;
+ width: 50px;
+ height: 120px;
+ cursor: pointer;
+}
+.delete-icon{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+
+}
+
 .category-and-pay{
 
     display: flex;
