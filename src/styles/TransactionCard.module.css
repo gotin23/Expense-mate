@@ -5,9 +5,13 @@
     border: 2px solid var(--color-primary);
     margin: 3px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
     color: var(--color-tertiary);
     overflow: hidden;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; */
 }
 .transaction-card h2{
  margin-bottom: 5px;
@@ -30,4 +34,6 @@ overflow-x: auto;
 .transaction-card li{
 color: var(--color-primary);
 list-style-type: none;
+/* overflow-x: auto; */
+
 }

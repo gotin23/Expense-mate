@@ -101,15 +101,17 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
                 }
 
                 return (
-                  <li key={index}>
-                    {<span>{`${result.name}: `}</span>}
+                  <li key={index} className={styles["user-card"]}>
+                    {<span>{`${result.name} :  `}</span>}
 
-                    {debtDifference > 0 && debtResult !== 0 ? "Debt:" + " " + debtResult?.toFixed(2) : ""}
-                    {debtDifference < 0 && creditresult !== 0 ? "Credit:" + " " + creditresult.toFixed(2) : ""}
-                    {creditresult && debtResult === 0 && "0"}
+                    {debtDifference > 0 && debtResult !== 0 ? "Debt:" + " " + debtResult?.toFixed(2) : " "}
+                    {debtDifference < 0 && creditresult !== 0 ? "Credit:" + " " + creditresult.toFixed(2) : " "}
+                    {(creditresult && debtResult) === 0 && " 0"}
 
                     {debtDifference - users.users[id]["to" + result.name][0].refund > 0 && (
-                      <button onClick={() => handleToggleRefundModale(result.name, debtDifference)}>Refund</button>
+                      <button onClick={() => handleToggleRefundModale(result.name, debtDifference)} className={styles["btn-refund"]}>
+                        Refund
+                      </button>
                     )}
                   </li>
                 );

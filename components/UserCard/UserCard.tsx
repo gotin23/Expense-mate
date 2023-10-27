@@ -111,9 +111,16 @@ export default function UserCard({ props }: UserCardProps) {
             <h2>{props.name}</h2>
             {/* <button onClick={() => setToggleDelete(!toggleDelete)} className={styles["btn-delete"]}> */}
             <Image src={deleteIcon} alt="delete-icon" className={styles["delete-icon"]} onClick={() => setToggleDelete(!toggleDelete)}></Image>
-            <Image src={paymentIcon} alt="delete-icon" onClick={togglePaymentForm} className={styles["payment-icon"]}></Image>
+
             {/* </button> */}
-            <Image src={debtIcon} alt="delete-icon" onClick={openDebtModale} className={styles["debt-icon"]}></Image>
+            <div className={styles["icon-container"]}>
+              <p>Payment:</p>
+              <Image src={paymentIcon} alt="delete-icon" onClick={togglePaymentForm} className={styles["payment-icon"]}></Image>
+            </div>
+            <div className={styles["icon-container"]}>
+              <p>Wallet:</p>
+              <Image src={debtIcon} alt="delete-icon" onClick={openDebtModale} className={styles["debt-icon"]}></Image>
+            </div>
 
             {toggleDelete && (
               <div className={styles["toggle-delete"]}>

@@ -1,5 +1,6 @@
 .card{
     background-color: var(--color-secondary);
+
     color: var(--color-tertiary);
     border-bottom: 3px solid var(--color-tertiary);
     height: 120px;
@@ -90,7 +91,7 @@ align-items: center;
    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-  max-height: 120px;
+min-height: 120px;
     width: 100%;
 
     /* background-color: aqua; */
@@ -99,12 +100,33 @@ align-items: center;
   width: 25%;
   font-size: 30px;
 }
+.icon-container{
+    background-color: var(--color-secondary);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid var(--color-tertiary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.icon-container p{
+    position: absolute;
+    width: 80px;
 
+    left: -85px;
+    display: flex;
+    justify-content: flex-end;
+  
+}
 .debt-icon,.payment-icon{
     cursor: pointer;
- width: 50px;
- height: 120px;
+ width: 30px;
+ height: 80px;
  cursor: pointer;
+ /* border: 3px solid blue; */
+ /* z-index: 9999999999; */
 }
 .delete-icon{
     position: absolute;
