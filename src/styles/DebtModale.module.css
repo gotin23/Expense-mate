@@ -16,12 +16,12 @@
 }
 .modale{
     width: 650px;
-    height: 750px;
+    height: 690px;
     background-color:var(--color-secondary);
     position: relative;
     border: 3px solid var(--color-tertiary);
-    margin-top: 200px;
-    border-radius: 20px 20px 20px 20px;
+    margin-top: 145px;
+    border-radius: 10px 20px 20px 20px;
 }
 .btn-toggle-modale{
     position: absolute;

@@ -1,11 +1,11 @@
 .transaction-card{
     width: 300px;
-    height: 200px;
+    height: 180px;
     background-color: var(--color-secondary);
     border: 2px solid var(--color-primary);
     margin: 3px;
     border-radius: 5px;
-    padding: 10px;
+    padding: 5px;
     color: var(--color-tertiary);
     overflow: hidden;
     /* display: flex;
@@ -22,10 +22,11 @@ color: var(--color-tertiary);
 }
 .transaction-card p{
  color:var(--color-primary);
- margin-bottom: 5px;
+ margin-bottom: 3px;
  white-space: nowrap;
  overflow: hidden;
  text-overflow: ellipsis;
+ font-size: 15px;
 }
 .transaction-card ul{
 display: flex;
@@ -34,6 +35,7 @@ overflow-x: auto;
 .transaction-card li{
 color: var(--color-primary);
 list-style-type: none;
+
 /* overflow-x: auto; */
 
 }

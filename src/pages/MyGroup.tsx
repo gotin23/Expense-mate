@@ -16,7 +16,6 @@ export default function MyGroup() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles["group-title"]}>My group!</h2>
       <button type="button" className={styles["btn-all-transactions"]} onClick={handleToggleAllTransactions}>
         {toggleAllTransactions ? "All transactions" : "Back"}
       </button>

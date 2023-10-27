@@ -22,7 +22,7 @@ export default function MyGroup() {
   return (
     <div>
       <div className={styles.container}>
-        <h2 className={styles["group-title"]}>My group!</h2>
+        {/* <h2 className={styles["group-title"]}>My group!</h2> */}
         <div className={styles["btns-container"]}>
           {" "}
           <button onClick={handleToggleAddUser} className={styles["btn-add-user"]}>

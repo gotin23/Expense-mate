@@ -20,6 +20,7 @@ align-items: center;
 text-align: center;
 color: var(--color-secondary);
 font-size: 80px;
+margin-bottom: 30px;
 /* margin: 100px auto; */
 }
 /* .home-content{
