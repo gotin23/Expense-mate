@@ -12,6 +12,7 @@ import Image from "next/image";
 import deleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
 import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
 import debtIcon from "../../public/assets/icons/wallet-svgrepo-com.svg";
+import userIcon from "../../public/assets/icons/user-svgrepo-com.svg";
 
 export default function UserCard({ props }: UserCardProps) {
   const dispatch = useDispatch();
@@ -108,18 +109,22 @@ export default function UserCard({ props }: UserCardProps) {
       ) : (
         <div className={`${styles.card} ${toggleForm ? styles.active : ""}`}>
           <div className={styles["title-and-btns"]}>
-            <h2>{props.name}</h2>
+            <div className={styles["user-icon-container"]}>
+              <Image src={userIcon} alt="user-icon" className={styles["user-icon"]}></Image>
+              <h2>{props.name}</h2>
+            </div>
+
             {/* <button onClick={() => setToggleDelete(!toggleDelete)} className={styles["btn-delete"]}> */}
             <Image src={deleteIcon} alt="delete-icon" className={styles["delete-icon"]} onClick={() => setToggleDelete(!toggleDelete)}></Image>
 
             {/* </button> */}
             <div className={styles["icon-container"]}>
               <p>Payment:</p>
-              <Image src={paymentIcon} alt="delete-icon" onClick={togglePaymentForm} className={styles["payment-icon"]}></Image>
+              <Image src={paymentIcon} alt="payment-icon" onClick={togglePaymentForm} className={styles["payment-icon"]}></Image>
             </div>
             <div className={styles["icon-container"]}>
               <p>Wallet:</p>
-              <Image src={debtIcon} alt="delete-icon" onClick={openDebtModale} className={styles["debt-icon"]}></Image>
+              <Image src={debtIcon} alt="debt-icon" onClick={openDebtModale} className={styles["debt-icon"]}></Image>
             </div>
 
             {toggleDelete && (

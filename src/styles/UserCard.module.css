@@ -7,6 +7,8 @@
     position: relative;
     transition: height 0.4s ease-in;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     overflow: hidden;
     /* background-color: brown; */
@@ -89,23 +91,24 @@ align-items: center;
 .title-and-btns{
     display: flex;
    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    
 min-height: 120px;
-    width: 100%;
+    width: 90%;
 
-    /* background-color: aqua; */
+
 }
 .title-and-btns h2{
   width: 25%;
-  font-size: 30px;
+  font-size: 20px;
 }
 .icon-container{
     background-color: var(--color-secondary);
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 3px solid var(--color-tertiary);
+    border: 2px solid var(--color-tertiary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,7 +118,7 @@ min-height: 120px;
     position: absolute;
     width: 80px;
 
-    left: -85px;
+    left: -95px;
     display: flex;
     justify-content: flex-end;
   
@@ -136,6 +139,17 @@ min-height: 120px;
     top: 10px;
     cursor: pointer;
 
+}
+.user-icon{
+    width: 50px;
+    height: 50px;
+}
+.user-icon-container{
+   
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 33%;
 }
 
 .category-and-pay{
