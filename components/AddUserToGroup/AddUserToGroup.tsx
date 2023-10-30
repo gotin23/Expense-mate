@@ -16,13 +16,22 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
   const names: string[] = users.users.map((user) => user.name);
 
   const [name, setName] = useState("User");
+  const [toggleMsgUsernameLength, setToggleMsgUsernameLength] = useState(false);
+  const [toggleMsgUsernameExist, setToggleMsgUsernameExist] = useState(false);
+  const [toggleMsgMaximumPeopleInGroup, setToggleMaximunPeopleInGroup] = useState(false);
 
   const HandleAddUser = () => {
-    if (!names.includes(name) && users.users.length < 10 && name.length < 13) {
+    if (!names.includes(name) && users.users.length < 10 && name.length < 18) {
       dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [{ refund: 0 }] }), {}) }));
       setUserWaiting(userWaiting + 1);
 
       setToggle(false);
+    } else if (name.length >= 18) {
+      setToggleMsgUsernameLength(!toggleMsgUsernameLength);
+    } else if (users.users.length >= 10) {
+      setToggleMaximunPeopleInGroup(!toggleMsgMaximumPeopleInGroup);
+    } else if (names.includes(name)) {
+      setToggleMsgUsernameExist(!toggleMsgUsernameExist);
     }
   };
 
@@ -32,6 +41,9 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
         {" "}
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        {toggleMsgUsernameLength && <p>Please ensure that your username does not exceed 18 characters</p>}
+        {toggleMsgMaximumPeopleInGroup && <p>Group limit: Maximum of 10 members per group allowed</p>}
+        {toggleMsgUsernameExist && <p>The user must choose a name that is different from those already in the group</p>}
         <button type="button" className={styles["btn-add"]} onClick={HandleAddUser}>
           {" "}
           Add!

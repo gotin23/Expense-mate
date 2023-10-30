@@ -24,6 +24,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Expense Mate</h1>
+        <h2 className={styles.description}>Simplifying shared expenses among friends, hassle-free!</h2>
         <MyGroup />
         <Analytics
         // id="UA-170400000-1"

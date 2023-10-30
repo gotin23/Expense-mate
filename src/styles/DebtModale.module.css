@@ -1,7 +1,7 @@
 .modale-container{
     position: absolute;
     inset: 0 ;
-    /* background-color: var(--color-primary); */
+    background-color: var(--color-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;

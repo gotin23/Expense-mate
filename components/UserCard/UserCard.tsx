@@ -101,7 +101,7 @@ export default function UserCard({ props }: UserCardProps) {
     dispatch(deleteUser({ name: props.name }));
     setToggleDelete(!toggleDelete);
   };
-  console.log(users.users);
+
   return (
     <>
       {toggleDebtModale ? (
@@ -134,12 +134,6 @@ export default function UserCard({ props }: UserCardProps) {
                 <button onClick={() => setToggleDelete(!toggleDelete)}>No</button>
               </div>
             )}
-            {/* <button type="button" className={styles["btn-payment"]} onClick={togglePaymentForm}>
-              Make Payment!
-            </button> */}
-            {/* <button type="button" className={styles["btn-debt"]} onClick={openDebtModale}>
-              Debts & Credits
-            </button> */}
           </div>
 
           {toggleForm && (
