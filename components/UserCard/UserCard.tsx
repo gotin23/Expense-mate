@@ -91,7 +91,7 @@ export default function UserCard({ props }: UserCardProps) {
     const currentDate = new Date();
     const date = currentDate.toISOString().split("T")[0];
     const type = selectedOption;
-    if (payment > 0.01) {
+    if (payment >= 1) {
       dispatch(addDebt({ toUser: "to" + props.name, date: date, valueOfDebt: valueOfDebt, participantsToDebt: ids, category: selectedOption }));
       dispatch(addPayment({ payment: payment, from: props.id, participants: participants, date: date, category: selectedOption, fromName: props.name }));
       setToggleForm(!toggleForm);

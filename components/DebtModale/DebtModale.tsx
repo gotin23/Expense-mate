@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import styles from "../../src/styles/DebtModale.module.css";
 import { useState, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -53,7 +53,8 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
   const handleValueToRefund = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValueToRefund(e.target.value);
   };
-  const handleRefund = () => {
+  const handleRefund = (e: SyntheticEvent) => {
+    e.preventDefault();
     if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseFloat(valueToRefund)) {
       console.log(users.users[id]["to" + userToRefund][0].refund);
       const currentDate = new Date();
