@@ -137,7 +137,7 @@ export default function UserCard({ props }: UserCardProps) {
           </div>
 
           {toggleForm && (
-            <div className={`${styles.form} ${styles.fadeIn}`}>
+            <form className={`${styles.form} ${styles.fadeIn}`}>
               <div className={styles["amount-container"]}>
                 <label htmlFor="amount">Amount:</label>
                 <input type="number" id="amount" className={styles["input-number"]} onChange={handleInputAmount} />
@@ -180,7 +180,7 @@ export default function UserCard({ props }: UserCardProps) {
                   Pay!
                 </button>
               </div>
-            </div>
+            </form>
           )}
         </div>
       )}
