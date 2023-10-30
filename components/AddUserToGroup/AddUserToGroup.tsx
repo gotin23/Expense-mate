@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "@/redux/reducers/usersReducer";
@@ -20,7 +20,8 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
   const [toggleMsgUsernameExist, setToggleMsgUsernameExist] = useState(false);
   const [toggleMsgMaximumPeopleInGroup, setToggleMaximunPeopleInGroup] = useState(false);
 
-  const HandleAddUser = () => {
+  const HandleAddUser = (e: SyntheticEvent) => {
+    e.preventDefault();
     if (!names.includes(name) && users.users.length < 10 && name.length < 18) {
       dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [{ refund: 0 }] }), {}) }));
       setUserWaiting(userWaiting + 1);
@@ -44,11 +45,11 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
         {toggleMsgUsernameLength && <p>Please ensure that your username does not exceed 18 characters</p>}
         {toggleMsgMaximumPeopleInGroup && <p>Group limit: Maximum of 10 members per group allowed</p>}
         {toggleMsgUsernameExist && <p>The user must choose a name that is different from those already in the group</p>}
-        <button type="button" className={styles["btn-add"]} onClick={HandleAddUser}>
+        <button type="submit" className={styles["btn-add"]} onClick={HandleAddUser}>
           {" "}
           Add!
         </button>
-        <button className={styles["btn-close"]} onClick={() => setToggle(false)}>
+        <button type="button" className={styles["btn-close"]} onClick={() => setToggle(false)}>
           X
         </button>
       </form>

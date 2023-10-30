@@ -71,12 +71,16 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
         <div className={styles["modale-refund-container"]}>
           {
             <div className={styles["modale-refund"]}>
-              <button onClick={() => setToggleRefundForm(!toggleRefundForm)}>X</button>
-              <label htmlFor="number">Amount to refund:</label>
-              <input type="number" id="number" value={valueToRefund} onChange={handleValueToRefund} />
-              <button type="button" onClick={handleRefund}>
-                Refund
+              <button className={styles["close-modale-btn"]} onClick={() => setToggleRefundForm(!toggleRefundForm)}>
+                X
               </button>
+              <form>
+                <label htmlFor="number">Amount to refund:</label>
+                <input type="number" id="number" value={valueToRefund} onChange={handleValueToRefund} />
+                <button type="submit" className={styles["btn-refund"]} onClick={handleRefund}>
+                  Refund
+                </button>
+              </form>
             </div>
           }
         </div>

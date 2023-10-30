@@ -1,5 +1,5 @@
 .modale-container{
-    position: absolute;
+    position: fixed;
     inset: 0 ;
     background-color: var(--color-primary);
     display: flex;
@@ -107,6 +107,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
+}
+.modale-refund form{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
 }
 .modale-refund label{
   color:var(--color-tertiary);
@@ -115,6 +124,25 @@
 .modale-refund input{
   color:var(--color-tertiary);
   font-size: 20px;
+  margin-top: 20px;
+}
+.modale-refund .btn-refund{
+  color:var(--color-tertiary);
+  font-size: 20px;
+  border: 2px solid var(--color-tertiary);
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 20px;
+}
+.close-modale-btn{
+    position: absolute;
+    border: none;
+   top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: var(--color-secondary);
+    font-size: 25px;
 }
 
 @media screen and (max-width: 1280px) {
@@ -139,6 +167,36 @@
         margin-bottom: 10px;
        
     
+    }
+
+}
+@media screen and (max-width: 600px) {
+
+    .modale{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 0px;
+        
+    }
+    .modale li{
+   
+        font-size: 15px;
+      
+        
+    }
+    .modale span{
+      font-size: 15px;
+        
+    }
+    .modale button{
+      font-size: 14px;
+        
+    }
+    .modale-container{
+        background-color: aqua;
+      overflow-y:unset;
     }
 
 }

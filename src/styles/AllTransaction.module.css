@@ -80,3 +80,12 @@
         height: 500px;}
 
 }
+@media screen and (max-width: 1280px) {
+    .all-transactions-container {
+       
+        width: 100%;
+        height: 100%;
+    border: none;
+border-radius: 0px;}
+
+}

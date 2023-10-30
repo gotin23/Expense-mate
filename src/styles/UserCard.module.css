@@ -18,7 +18,7 @@
     /* background-color: aqua; */
 
 }
-.btn-payment,.btn-debt,.btn-delete{
+/* .btn-payment,.btn-debt,.btn-delete{
   
 
     border: 3px solid var(--color-tertiary);
@@ -29,8 +29,8 @@
     height: 50px;
     font-weight: bolder;
     cursor: pointer;
-    /* border: none; */
-}
+
+} */
 .form{
 
     width: 100%;
@@ -128,8 +128,7 @@ min-height: 120px;
  width: 30px;
  height: 80px;
  cursor: pointer;
- /* border: 3px solid blue; */
- /* z-index: 9999999999; */
+
 }
 .delete-icon{
     position: absolute;
@@ -150,7 +149,7 @@ min-height: 120px;
     justify-content: flex-start;
     align-items: center;
     width: 33%;
-    /* background-color: aqua; */
+
 
 }
 
@@ -212,3 +211,79 @@ min-height: 120px;
     0% {opacity: 0;}
     100% {opacity: 1;}
     } 
+    @media screen and (max-width: 1280px) {
+        .title-and-btns h2{
+            
+            font-size: 17px;
+          }
+       
+    
+    }
+    @media screen and (max-width: 600px) {
+        .title-and-btns h2{
+            
+            font-size: 14px;
+          }
+          .icon-container{
+            background-color: var(--color-secondary);
+            width: 50px;
+            height: 50px;
+        
+        
+          
+        }
+        .icon-container p{
+            position: absolute;
+            width: 80px;
+        
+            left: -85px;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 14px;
+          
+        }
+        .title-and-btns{
+            display: flex;
+           flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            
+        min-height: 120px;
+            width: 96%;
+         
+        
+        
+        }
+        .debt-icon,.payment-icon{
+    
+         width: 20px;
+         height: 50px;
+        
+        
+        }
+        .delete-icon{
+
+            width: 15px;
+            height: 15px;
+            left: 5px;
+            top: 5px;
+          
+        
+        }
+        .user-icon{
+            width: 20px;
+            height: 20px;
+        }
+        .user-icon-container{
+           
+            display: flex;
+            justify-content: flex-end;
+            align-items:flex-start;
+            flex-direction: column;
+         
+        
+        
+        }
+       
+    
+    }
