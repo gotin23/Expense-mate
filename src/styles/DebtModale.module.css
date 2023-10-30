@@ -80,6 +80,7 @@
     font-size: 22px;
     margin-bottom: 20px;
     cursor: pointer;
+    border-radius: 10px;
 
 }
 /* .positive{
@@ -114,4 +115,30 @@
 .modale-refund input{
   color:var(--color-tertiary);
   font-size: 20px;
+}
+
+@media screen and (max-width: 1280px) {
+    .modale{
+        width: 600px;
+        height: 550px;
+        
+    }
+    .modale h2{
+
+        margin-top: 10px;
+    }
+    .modale li{
+   
+         font-size: 17px;
+       
+         
+     }
+     .btn-refund{
+        
+        font-size: 17px;
+        margin-bottom: 10px;
+       
+    
+    }
+
 }

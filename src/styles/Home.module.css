@@ -275,3 +275,12 @@ cursor: pointer;
     transform: rotate(0deg);
   }
 } */
+
+@media screen and (max-width: 1280px) {
+  .main h1 {
+
+    font-size: 50px;
+   
+    }
+
+}

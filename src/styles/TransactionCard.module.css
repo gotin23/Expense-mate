@@ -38,6 +38,7 @@ overflow-x: auto;
 .transaction-card li{
 color: var(--color-primary);
 list-style-type: none;
+white-space: nowrap;
 
 
 /* overflow-x: auto; */
