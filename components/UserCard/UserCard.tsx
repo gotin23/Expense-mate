@@ -11,7 +11,7 @@ import DebtModale from "../DebtModale/DebtModale";
 import Image from "next/image";
 import deleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
 import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
-import debtIcon from "../../public/assets/icons/wallet-svgrepo-com.svg";
+import debtIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
 import userIcon from "../../public/assets/icons/user-svgrepo-com.svg";
 
 export default function UserCard({ props }: UserCardProps) {
@@ -91,11 +91,11 @@ export default function UserCard({ props }: UserCardProps) {
     const currentDate = new Date();
     const date = currentDate.toISOString().split("T")[0];
     const type = selectedOption;
-    console.log(participants, options);
-
-    dispatch(addDebt({ toUser: "to" + props.name, date: date, valueOfDebt: valueOfDebt, participantsToDebt: ids, category: selectedOption }));
-    dispatch(addPayment({ payment: payment, from: props.id, participants: participants, date: date, category: selectedOption, fromName: props.name }));
-    setToggleForm(!toggleForm);
+    if (payment > 0.01) {
+      dispatch(addDebt({ toUser: "to" + props.name, date: date, valueOfDebt: valueOfDebt, participantsToDebt: ids, category: selectedOption }));
+      dispatch(addPayment({ payment: payment, from: props.id, participants: participants, date: date, category: selectedOption, fromName: props.name }));
+      setToggleForm(!toggleForm);
+    }
   };
   const handleDeleteUser = () => {
     dispatch(deleteUser({ name: props.name }));
