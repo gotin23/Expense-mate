@@ -294,5 +294,8 @@ cursor: pointer;
       padding: 20px 10px 10px 0px;
       height: 20vh;
     }
+    .description{
+      font-size: 15px;
+    }
 
 }
