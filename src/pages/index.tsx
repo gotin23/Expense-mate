@@ -23,8 +23,11 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Expense Mate</h1>
-        <h2 className={styles.description}>Simplifying shared expenses among friends, hassle-free!</h2>
+        <div className={styles["main-title-container"]}>
+          <h1>Expense Mate</h1>
+          <h2 className={styles.description}>Simplifying shared expenses among friends, hassle-free!</h2>
+        </div>
+
         <MyGroup />
         <Analytics
         // id="UA-170400000-1"

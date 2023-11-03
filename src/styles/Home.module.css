@@ -286,11 +286,13 @@ cursor: pointer;
 }
 @media screen and (max-width: 600px) {
   .main  {
-
   height: auto;
   align-items: normal;
-
-   
+  /* padding: 10px; */
+    }
+    .main-title-container{
+      padding: 20px 10px 10px 0px;
+      height: 20vh;
     }
 
 }

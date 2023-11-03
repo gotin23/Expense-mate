@@ -12,10 +12,11 @@ color: var(--color-tertiary);
 
 .btn-all-transactions,.btn-add-user{
     padding: 8px;
-    border: 3px solid var(--color-tertiary);
-    border-bottom: none ;
-    background-color: var(--color-secondary) ;
-    color: var(--color-primary);
+    /* border: 3px solid var(--color-tertiary); */
+    /* border-bottom: none ; */
+    border: none;
+    background-color:#136da9 ;
+    color: var(--color-secondary);
     margin-right: 3px;
     font-size: 20px;
     cursor: pointer;
@@ -57,10 +58,12 @@ color: var(--color-tertiary);
 }
 @media screen and (max-width: 600px) {
     .my-group-container{
-        height: 100%;
+        height:75vh;
         width: 100%;
         border-radius:0;
         border: none;
+        padding: 0px 10px;
+        border-top:1px solid var(--color-tertiary);
     }
     
     .empty{
@@ -69,6 +72,12 @@ color: var(--color-tertiary);
        border: none;
        border-radius: 0px;
        font-size: 20px;
+    }
+    .btns-container{
+    height: 5vh;
+    display: flex;  
+    justify-content: center;
+    
     }
 
 }
