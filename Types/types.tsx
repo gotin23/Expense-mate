@@ -44,3 +44,7 @@ export interface UserCardProps {
   key: number;
   props: User;
 }
+// export interface UserCardProps {
+//   key: number;
+//   props: String;
+// }

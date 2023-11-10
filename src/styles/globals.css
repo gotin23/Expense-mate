@@ -1,11 +1,18 @@
 :root {
-  --color-primary: #00072d;
+  --color-primary: #2541B2;
   --color-secondary: #ffffff;
-  --color-tertiary: #001c55;
+  --color-tertiary: #20A4F3;
+  --color-green : #86e923;
+  --color-red : rgb(254, 60, 60);
 }
 @font-face {
   font-family: 'Deeper';
   src: url('../../public/assets/fonts/TT\ Interphases\ Pro/interphase.ttf');
+
+}
+@font-face {
+  font-family: 'holy';
+  src: url('../../public/assets/fonts/Holly\ Groove.otf');
 
 }
 
@@ -18,8 +25,8 @@
 body{
   background-color: var(--color-primary) ;
   color:var(--color-secondary);
-  font-family: "deeper";
-  max-height: 100vh;
+  font-family: "Deeper";
+ 
 }
 
 

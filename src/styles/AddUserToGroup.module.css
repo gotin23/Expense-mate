@@ -1,54 +1,71 @@
 .form-container{
     position: absolute;
     inset: 0 ;
-    background-color : rgba(0, 0, 0, 0.308);
+    background-color :var(--color-secondary);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 99;
+    color: var(--color-primary);
+    font-size: 22px;
 
 }
 .form-container form{
-    width: 350px;
-    height: 300px;
+    width: 100%;
+    height: 50%;
     background-color:var(--color-secondary);
     position: relative;
-    border: 3px solid var(--color-tertiary);
-    border-radius: 10px;
+    /* border: 3px solid var(--color-tertiary); */
+    /* border-radius: 10px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.input-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 20%;
+    width: 90%;
+ 
+
+ 
 }
-.form-container p{
+/* .form-container p{
     color: var(--color-tertiary);
     font-size: 15x;
-}
+} */
 .form-container input{
-   margin-bottom: 10px;
+margin-top: 15px;
+width: 80%;
+height: 30px;
+padding: 5px;
 }
-.btn-add{
+/* .btn-add{
    width: 80px;
    height: 80px;
     border: 3px solid var(--color-tertiary);
-    color: var(--color-tertiary);
+
     background-color: var(--color-secondary);
     font-size: 25px;
     border-radius: 50%;
     margin-top: 10px;
     cursor: pointer;
    
-}
+} */
 .form-container label{
   
-    color: var(--color-tertiary);
-     margin-bottom: 15px;
-    font-size: 30px;
+
+    
+
+    font-size: 25px;
 
    
 }
-.btn-close{
+/* .btn-close{
     border: none;
     position: absolute;
     font-size: 30px;
@@ -57,4 +74,25 @@
     cursor: pointer;
     color: var(--color-tertiary);
     background-color: var(--color-secondary);
+} */
+.btns-container {
+
+ display: flex;
+ justify-content: space-around;
+ width: 70%;
+
+
+}
+.btns-container button{
+ width: 80px;
+ height: 40px;
+border:none;
+border-radius: 8px;
+font-size: 20px;
+}
+.btn-ok{
+    background-color: var(--color-green);
+}
+.btn-cancel{
+    background-color: var(--color-red);
 }

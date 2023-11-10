@@ -1,0 +1,45 @@
+
+
+   .transaction-container {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+   
+  }
+   .transaction-container h3{
+    font-size: 28px;
+    margin: 10px;
+  
+   
+  }
+  
+  .table {
+    width: 100%; 
+    /* height: 100%; */
+    border-collapse: collapse;
+    table-layout: fixed; 
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 4px;
+    width: 20%; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-align: left;
+    font-size: 13px;
+  }
+  .table tr{
+    height: 40px;
+   
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+    font-size: 20px;
+  }
+
+  

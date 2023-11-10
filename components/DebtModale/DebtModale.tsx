@@ -1,15 +1,24 @@
 import React, { SyntheticEvent } from "react";
 import styles from "../../src/styles/DebtModale.module.css";
+import Image from "next/image";
 import { useState, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Types/types";
 import { ModaleDebtProps } from "../../Types/types";
 import { addRefund } from "../../src/redux/reducers/usersReducer";
+import Transaction from "../Transaction/Transaction";
+import PaymentForm from "../../components/PaymentForm/PaymentForm";
+import DeleteUser from "../../components/DeleteUser/DeleteUser";
+import BackLogo from "../../public/assets/icons/Back.svg";
+import DeleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
+import PaymentIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
 
 export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
   const users = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const [toggleRefundForm, setToggleRefundForm] = useState(false);
+  const [toggleDeleteUser, setToggleDeleteUser] = useState(false);
+  const [togglePaymentForm, setTogglePaymentForm] = useState(false);
   const [userToRefund, setUserToRefund] = useState("");
   const [valueToRefund, setValueToRefund] = useState("");
   const [debtAmount, setDebtAmount] = useState(0);
@@ -64,11 +73,66 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
     }
   };
 
-  console.log(names, "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-
   return (
     <>
-      {toggleRefundForm && (
+      {toggleDeleteUser && <DeleteUser name={name} setToggle={setToggle} setToggleDelete={setToggleDeleteUser} />}
+      {togglePaymentForm && <PaymentForm name={name} id={id} setToggle={setToggle} setTogglePaymentForm={setTogglePaymentForm} />}
+
+      <div className={styles["plus-container"]}>
+        <div className={styles["total-container"]}>
+          <h3>
+            {name} Total : <span className={styles.positive}>300</span>
+          </h3>
+          <Image src={BackLogo} alt="back icon" onClick={() => setToggle(false)}></Image>
+        </div>
+        <div className={styles["debt-container"]}>
+          <Transaction name={name} />
+          {/* <h3>Balance details:</h3>
+          <div>
+            <ul>
+              {totalDebt.map((result, index) => {
+                const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
+                const user = users.users.filter((el) => el.name === result.name);
+                const debtResult = isNaN(debtDifference) ? null : debtDifference - users.users[id]["to" + result.name][0].refund;
+                const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0].id]["to" + name][0].refund;
+
+                if (isNaN(debtDifference)) {
+                  return null;
+                }
+
+                return (
+                  <li key={index} className={styles["user-card"]}>
+                    {<span>{`${result.name} :  `}</span>}
+
+                    {debtDifference > 0 && debtResult !== 0 ? "Debt:" + " " + debtResult?.toFixed(2) : " "}
+                    {debtDifference < 0 && creditresult !== 0 ? "Credit:" + " " + creditresult.toFixed(2) : " "}
+                    {(creditresult && debtResult) === 0 && " 0"}
+
+                    {debtDifference - users.users[id]["to" + result.name][0].refund > 0 && (
+                      <button onClick={() => handleToggleRefundModale(result.name, debtDifference)} className={styles["btn-refund"]}>
+                        Refund
+                      </button>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div> */}
+        </div>
+        <div className={styles["btns-container"]}>
+          <div className={styles["btn-transation"]}>
+            <p>see all my transaction</p>
+          </div>
+          <div className={styles["btn-delete"]} onClick={() => setToggleDeleteUser(!toggleDeleteUser)}>
+            <p>Delete user</p>
+            <Image src={DeleteIcon} alt="delete icon"></Image>
+          </div>
+          <div className={styles["btn-payment"]} onClick={() => setTogglePaymentForm(!togglePaymentForm)}>
+            <p>Make payment</p>
+            <Image src={PaymentIcon} alt="payment icon"></Image>
+          </div>
+        </div>
+        {/* {toggleRefundForm && (
         <div className={styles["modale-refund-container"]}>
           {
             <div className={styles["modale-refund"]}>
@@ -87,7 +151,6 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
         </div>
       )}
       <div className={styles["modale-container"]}>
-        {/* <h2>FriendWallet:</h2> */}
         <div className={styles.modale}>
           <button type="button" className={styles["btn-toggle-modale"]} onClick={() => setToggle(false)}>
             X
@@ -102,7 +165,7 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
                 const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0].id]["to" + name][0].refund;
 
                 if (isNaN(debtDifference)) {
-                  return null; // Ne rien retourner si debtDifference est NaN
+                  return null;
                 }
 
                 return (
@@ -126,6 +189,7 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
             <p>Not enought user in the group!</p>
           )}
         </div>
+      </div> */}
       </div>
     </>
   );

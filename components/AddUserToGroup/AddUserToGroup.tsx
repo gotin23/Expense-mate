@@ -15,7 +15,7 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
   const [userWaiting, setUserWaiting] = useState(1);
   const names: string[] = users.users.map((user) => user.name);
 
-  const [name, setName] = useState("User");
+  const [name, setName] = useState("");
   const [toggleMsgUsernameLength, setToggleMsgUsernameLength] = useState(false);
   const [toggleMsgUsernameExist, setToggleMsgUsernameExist] = useState(false);
   const [toggleMsgMaximumPeopleInGroup, setToggleMaximunPeopleInGroup] = useState(false);
@@ -40,18 +40,24 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
     <div className={styles["form-container"]}>
       <form>
         {" "}
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+        <h2>Choose a username!</h2>
+        <div className={styles["input-container"]}>
+          <label htmlFor="name">Username:</label>
+          <input type="text" id="name" value={name} placeholder="Enter a name" autoFocus onChange={(e) => setName(e.target.value)} />
+        </div>
         {toggleMsgUsernameLength && <p>Please ensure that your username does not exceed 18 characters</p>}
         {toggleMsgMaximumPeopleInGroup && <p>Group limit: Maximum of 10 members per group allowed</p>}
         {toggleMsgUsernameExist && <p>The user must choose a name that is different from those already in the group</p>}
-        <button type="submit" className={styles["btn-add"]} onClick={HandleAddUser}>
-          {" "}
-          Add!
-        </button>
-        <button type="button" className={styles["btn-close"]} onClick={() => setToggle(false)}>
-          X
-        </button>
+        <div className={styles["btns-container"]}>
+          <button type="button" className={styles["btn-cancel"]} onClick={() => setToggle(false)}>
+            {" "}
+            Cancel
+          </button>
+          <button type="submit" className={styles["btn-ok"]} onClick={HandleAddUser}>
+            {" "}
+            OK
+          </button>
+        </div>
       </form>
     </div>
   );
