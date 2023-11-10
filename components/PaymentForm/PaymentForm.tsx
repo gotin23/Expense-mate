@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Types/types";
 import { useEffect, useState, ChangeEvent } from "react";
 import { addDebt, addPayment } from "@/redux/reducers/usersReducer";
+import { PaymentFormProps } from "../../Types/types";
 
-export default function PaymentForm({ name, id, setToggle, setTogglePaymentForm }) {
+export default function PaymentForm({ name, id, setToggle, setTogglePaymentForm }: PaymentFormProps) {
   const users = useSelector((state: RootState) => state.user);
 
   const names: string[] = users.users.map((user) => user.name);

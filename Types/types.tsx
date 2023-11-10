@@ -30,16 +30,30 @@ export type Transaction = {
   from: string;
 };
 
-export type TransactionProps = {
-  props: {
-    payment: number;
-    participants: string[];
-    date: string;
-    category: string;
-    from: string;
-  };
-};
+export interface PaymentFormProps {
+  name: string;
+  id: number;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setTogglePaymentForm: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+// export type TransactionProps = {
+//   props: {
+//     payment: number;
+//     participants: string[];
+//     date: string;
+//     category: string;
+//     from: string;
+//   };
+// };
+export interface TransactionProps {
+  name: string;
+}
+export interface DeleteUserProps {
+  name: string;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  setToggleDelete: React.Dispatch<React.SetStateAction<boolean>>;
+}
 export interface UserCardProps {
   key: number;
   props: User;

@@ -1,9 +1,10 @@
 import React, { SyntheticEvent } from "react";
 import styles from "../../src/styles/Transaction.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../Types/types";
+import { RootState, Transaction } from "../../Types/types";
+import { TransactionProps } from "../../Types/types";
 
-export default function Transaction({ name }) {
+export default function Transaction({ name }: TransactionProps) {
   const users = useSelector((state: RootState) => state.user);
   console.log(
     users.allTransactions.filter((tran) => tran.participants.includes(name)),
