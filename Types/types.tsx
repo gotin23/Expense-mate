@@ -55,8 +55,10 @@ export interface DeleteUserProps {
   setToggleDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface UserCardProps {
-  key: number;
-  props: User;
+  props: {
+    name: string;
+    id: number; // ou le type approprié pour 'id'
+  };
 }
 // export interface UserCardProps {
 //   key: number;
