@@ -7,7 +7,7 @@ import { useState, ChangeEvent } from "react";
 // import { RootState } from "../../Types/types";
 // import { addDebt, addPayment, deleteUser } from "@/redux/reducers/usersReducer";
 import { UserCardProps } from "../../Types/types";
-import DebtModale from "../DebtModale/DebtModale";
+// import DebtModale from "../DebtModale/DebtModale";
 import Image from "next/image";
 // import deleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
 // import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
@@ -21,7 +21,7 @@ export default function UserCard({ props }: UserCardProps) {
   console.log(props);
   return (
     <>
-      {togglePlus && <DebtModale id={props.id} name={props.name} setToggle={setTogglePlus} />}
+      {/* {togglePlus && <DebtModale id={props.id} name={props.name} setToggle={setTogglePlus} />} */}
       <div className={styles.card}>
         <div className={styles["user-container"]}>
           <Image src={UserIcon} alt="user icon"></Image>
