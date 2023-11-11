@@ -120,13 +120,13 @@ export default function Dashboard() {
   };
   const handleRefund = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseFloat(valueToRefund)) {
-      console.log(users.users[id]["to" + userToRefund][0].refund);
-      const currentDate = new Date();
-      const date = currentDate.toISOString().split("T")[0];
-      dispatch(addRefund({ id: id, valueToRefund: parseFloat(valueToRefund), userRefund: userToRefund, from: name, date: date }));
-      setToggleRefundForm(false);
-    }
+    // if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseFloat(valueToRefund)) {
+    console.log(users.users[id]["to" + userToRefund][0].refund);
+    const currentDate = new Date();
+    const date = currentDate.toISOString().split("T")[0];
+    dispatch(addRefund({ id: id, valueToRefund: parseFloat(valueToRefund), userRefund: userToRefund, from: name, date: date }));
+    setToggleRefundForm(false);
+    // }
   };
   return (
     <div>
@@ -208,6 +208,8 @@ export default function Dashboard() {
                       </button>
                     )}
                     {debtResult !== null && debtResult > 0 && "salut la compagnie"}
+                    {debtResult}
+                    {creditresult}
                   </li>
                 );
               })}
