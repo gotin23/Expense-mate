@@ -29,7 +29,7 @@ export default function Dashboard() {
   const id = onUser[0].id;
 
   // Faites quelque chose avec le contenu récupéré
-  console.log("Contenu après le dernier '/':", id);
+
   const dispatch = useDispatch();
   const [toggleRefundForm, setToggleRefundForm] = useState(false);
   const [toggleDeleteUser, setToggleDeleteUser] = useState(false);
@@ -59,6 +59,8 @@ export default function Dashboard() {
   interface DebtItem {
     valueOfDebt: number;
   }
+  const totalDebtArrayfilter = totalDebtArray.filter((item) => item.name !== name);
+  // console.log(totalDebtArray.filter((item) => item.name !== name));
   const debtsOwedToMe = users.users.map((user) => {
     if (user["to" + name] && Array.isArray(user["to" + name])) {
       const totalValueOfDebt = user["to" + name].reduce((accumulator: number, item: DebtItem) => {
@@ -108,7 +110,7 @@ export default function Dashboard() {
   const allRefundResult = myTotalRefund - totalUsersRefund;
   const totalBalance = parseFloat((creditTotal - debtTotal + allRefundResult).toFixed(2));
 
-  console.log(totalUsersRefund, usersRefundArray, totalBalance, "la somme ici");
+  // console.log(totalUsersRefund, usersRefundArray, totalBalance, "la somme ici");
 
   const handleToggleRefundModale = (toRefund: string, debt: number) => {
     setToggleRefundForm(!toggleRefundForm);
@@ -179,17 +181,23 @@ export default function Dashboard() {
           <h3>Balance details:</h3>
           <div>
             <ul>
-              {totalDebtArray.map((result, index) => {
+              {totalDebtArrayfilter.map((result, index) => {
                 const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
 
-                console.log(debtDifference, "ici");
                 const user = users.users.filter((el) => el.name === result.name);
                 const debtResult = isNaN(debtDifference) ? null : debtDifference - users.users[id]["to" + result.name][0].refund;
-                console.log(users.users[user[0]?.id], "regarde la");
+
                 const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0]?.id]["to" + name][0]?.refund;
                 // const creditresult = 2;
-                console.log(creditresult, debtResult, "credit et dette ");
-
+                let myRefund = users.users[user[0].id]["to" + name];
+                myRefund = myRefund && myRefund[0].refund;
+                let mateRefund = users.users[id]["to" + result.name];
+                mateRefund = mateRefund && mateRefund[0].refund;
+                const idFilter = users.users.filter((el) => el.name === result.name);
+                console.log(result, idFilter[0].id);
+                console.log(result.total, debtsOwedToMe[idFilter[0].id].totalValueOfDebt, myRefund, mateRefund);
+                console.log(debtsOwedToMe[idFilter[0].id].totalValueOfDebt - result.total - (myRefund - mateRefund));
+                const tt = debtsOwedToMe[idFilter[0].id].totalValueOfDebt - result.total - (myRefund - mateRefund);
                 if (isNaN(debtDifference)) {
                   return null;
                 }
@@ -198,18 +206,18 @@ export default function Dashboard() {
                   <li key={index} className={styles["user-card"]}>
                     {<span>{`${result.name} :  `}</span>}
 
-                    {debtDifference > 0 && debtResult !== 0 ? "je doit:" + " " + debtResult?.toFixed(2) : " "}
-                    <p> {debtDifference < 0 && creditresult !== 0 ? "me doit:" + " " + creditresult.toFixed(2) : " "}</p>
+                    {tt < 0 ? "je doit:" + " " + tt.toFixed(2) : " "}
+                    <p> {tt > 0 ? "me doit:" + " " + tt.toFixed(2) : " "}</p>
                     {(creditresult && debtResult) === 0 && " 0"}
 
-                    {debtDifference - users.users[id]["to" + result.name][0].refund > 0 && (
+                    {tt < 0 && (
                       <button onClick={() => handleToggleRefundModale(result.name, debtDifference)} className={styles["btn-refund"]}>
                         Refund
                       </button>
                     )}
                     {debtResult !== null && debtResult > 0 && "salut la compagnie"}
-                    {debtResult}
-                    {creditresult}
+                    {/* {debtResult}
+                    {creditresult} */}
                   </li>
                 );
               })}
