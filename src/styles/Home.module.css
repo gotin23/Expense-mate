@@ -22,7 +22,8 @@ justify-content: space-between;
 }
 .title-container{
   height: 15%;
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
+  background: linear-gradient(98deg,#2541b2 35%,#20a4f3 100%);
   color: var(--color-secondary);
   font-size: 22px;
   display: flex;

@@ -22,6 +22,8 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
   const [userToRefund, setUserToRefund] = useState("");
   const [valueToRefund, setValueToRefund] = useState("");
   const [debtAmount, setDebtAmount] = useState(0);
+  const [total, setTotal] = useState(0);
+  console.log(users);
 
   type TransactionItem = {
     type: string;
@@ -54,6 +56,23 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
       return { name: user.name, totalValueOfDebt: 0 };
     }
   });
+
+  const creditTotal = debtsOwedToMe.reduce((acc: number, debt: any) => {
+    console.log(acc, "iciicicici", debt);
+    if (debt.totalValueOfDebt) {
+      return acc + debt.totalValueOfDebt;
+    }
+    return acc;
+  }, 0);
+  const debtTotal = totalDebt.reduce((acc: any, debt: any) => {
+    console.log(acc, "iciicicici", debt);
+    if (debt.total) {
+      return acc + debt.total;
+    }
+    return acc;
+  }, 0);
+
+  console.log(typeof debtTotal, "la", typeof creditTotal);
   const handleToggleRefundModale = (toRefund: string, debt: number) => {
     setToggleRefundForm(!toggleRefundForm);
     setUserToRefund(toRefund);
@@ -81,20 +100,23 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
       <div className={styles["plus-container"]}>
         <div className={styles["total-container"]}>
           <h3>
-            {name} Total : <span className={styles.positive}>300</span>
+            {name} Total : <span className={styles.positive}>{(creditTotal - debtTotal).toFixed(2)}</span>
           </h3>
           <Image src={BackLogo} alt="back icon" onClick={() => setToggle(false)}></Image>
         </div>
         <div className={styles["debt-container"]}>
-          <Transaction name={name} />
-          {/* <h3>Balance details:</h3>
+          {/* <Transaction name={name} /> */}
+          <h3>Balance details:</h3>
           <div>
             <ul>
               {totalDebt.map((result, index) => {
                 const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
+
+                console.log(debtDifference, "ici");
                 const user = users.users.filter((el) => el.name === result.name);
                 const debtResult = isNaN(debtDifference) ? null : debtDifference - users.users[id]["to" + result.name][0].refund;
                 const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0].id]["to" + name][0].refund;
+                console.log(creditresult, debtResult, "credit et dette ");
 
                 if (isNaN(debtDifference)) {
                   return null;
@@ -104,8 +126,8 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
                   <li key={index} className={styles["user-card"]}>
                     {<span>{`${result.name} :  `}</span>}
 
-                    {debtDifference > 0 && debtResult !== 0 ? "Debt:" + " " + debtResult?.toFixed(2) : " "}
-                    {debtDifference < 0 && creditresult !== 0 ? "Credit:" + " " + creditresult.toFixed(2) : " "}
+                    {debtDifference > 0 && debtResult !== 0 ? "je doit:" + " " + debtResult?.toFixed(2) : " "}
+                    <p> {debtDifference < 0 && creditresult !== 0 ? "me doit:" + " " + creditresult.toFixed(2) : " "}</p>
                     {(creditresult && debtResult) === 0 && " 0"}
 
                     {debtDifference - users.users[id]["to" + result.name][0].refund > 0 && (
@@ -113,11 +135,12 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
                         Refund
                       </button>
                     )}
+                    {debtResult !== null && debtResult > 0 && "salut la compagnie"}
                   </li>
                 );
               })}
             </ul>
-          </div> */}
+          </div>
         </div>
         <div className={styles["btns-container"]}>
           <div className={styles["btn-transation"]}>

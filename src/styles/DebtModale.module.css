@@ -1,6 +1,6 @@
 .plus-container{
     background-color: var(--color-secondary);
-    position: absolute;
+    position: fixed;
     z-index: 4;
 inset: 0;
 display: flex;
