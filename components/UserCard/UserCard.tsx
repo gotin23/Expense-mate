@@ -13,7 +13,8 @@ import Image from "next/image";
 // import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
 // import debtIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
 import UserIcon from "../../public/assets/icons/user-svgrepo-com.svg";
-import PlusIcon from "../../public/assets/icons/plus-svgrepo-com.svg";
+import PlusIcon from "../../public/assets/icons/Plus Circle Icon.svg";
+import Link from "next/link";
 
 export default function UserCard({ props }: UserCardProps) {
   const [togglePlus, setTogglePlus] = useState(false);
@@ -27,7 +28,10 @@ export default function UserCard({ props }: UserCardProps) {
           <p>{props.name}</p>
         </div>
         <div className={styles["btn-plus"]}>
-          <Image src={PlusIcon} alt="plus icon" onClick={() => setTogglePlus(!togglePlus)}></Image>
+          <Link href={`/Dashboard/${props.name}`}>
+            <Image src={PlusIcon} alt="plus icon"></Image>
+          </Link>
+          {/* <Image src={PlusIcon} alt="plus icon" onClick={() => setTogglePlus(!togglePlus)}></Image> */}
         </div>
       </div>
     </>

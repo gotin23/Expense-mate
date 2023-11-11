@@ -1,20 +1,35 @@
 import React, { SyntheticEvent } from "react";
-import styles from "../../src/styles/DebtModale.module.css";
+import styles from "../../../src/styles/DebtModale.module.css";
 import Image from "next/image";
 import { useState, ChangeEvent } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../Types/types";
-import { ModaleDebtProps } from "../../Types/types";
-import { addRefund } from "../../src/redux/reducers/usersReducer";
-import Transaction from "../Transaction/Transaction";
-import PaymentForm from "../../components/PaymentForm/PaymentForm";
-import DeleteUser from "../../components/DeleteUser/DeleteUser";
-import BackLogo from "../../public/assets/icons/Back.svg";
-import DeleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
-import PaymentIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
+import { RootState } from "../../../Types/types";
+import { ModaleDebtProps } from "../../../Types/types";
+import { addRefund } from "../../redux/reducers/usersReducer";
+import Transaction from "../../../components/Transaction/Transaction";
+import PaymentForm from "../../../components/PaymentForm/PaymentForm";
+import DeleteUser from "../../../components/DeleteUser/DeleteUser";
+import BackLogo from "../../../public/assets/icons/Back.svg";
+import DeleteIcon from "../../../public/assets/icons/delete-4-svgrepo-com.svg";
+import PaymentIcon from "../../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
+import HomeIcon from "../../../public/assets/icons/Home Icon.svg";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
+export default function Dashboard() {
   const users = useSelector((state: RootState) => state.user);
+  const router = useRouter();
+  // Récupérez le chemin de l'URL actuelle
+  const currentPath = router.asPath;
+  // Trouvez le dernier index du caractère '/' dans le chemin de l'URL
+  const lastIndex = currentPath.lastIndexOf("/");
+  // Récupérez tout ce qui se trouve après le dernier '/'
+  const name = lastIndex !== -1 ? currentPath.slice(lastIndex + 1) : "";
+  const onUser = users.users.filter((el) => el.name === name);
+  const id = onUser[0].id;
+
+  // Faites quelque chose avec le contenu récupéré
+  console.log("Contenu après le dernier '/':", id);
   const dispatch = useDispatch();
   const [toggleRefundForm, setToggleRefundForm] = useState(false);
   const [toggleDeleteUser, setToggleDeleteUser] = useState(false);
@@ -30,7 +45,8 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
     valueOfDebt: number;
   };
   const names: string[] = users.users.map((user) => user.name);
-  const totalDebt = names.map((arrayName) => {
+
+  const totalDebtArray = names.map((arrayName) => {
     const array = users.users[id]["to" + arrayName];
     const total = array?.reduce((accumulator: number, item: TransactionItem) => {
       if (item.valueOfDebt) {
@@ -58,21 +74,42 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
   });
 
   const creditTotal = debtsOwedToMe.reduce((acc: number, debt: any) => {
-    console.log(acc, "iciicicici", debt);
     if (debt.totalValueOfDebt) {
       return acc + debt.totalValueOfDebt;
     }
     return acc;
   }, 0);
-  const debtTotal = totalDebt.reduce((acc: any, debt: any) => {
-    console.log(acc, "iciicicici", debt);
+  const debtTotal = totalDebtArray.reduce((acc: any, debt: any) => {
     if (debt.total) {
       return acc + debt.total;
     }
     return acc;
   }, 0);
 
-  console.log(typeof debtTotal, "la", typeof creditTotal);
+  // const refundArray = users.users[id].map((user: any) => {
+  //   user;
+  // });
+  const myRefundArray = Object.keys(users.users[id])
+    .filter((prop: string) => prop.startsWith("to"))
+    .map((prop) => users.users[id][prop])
+    .map((tab) => tab[0]);
+
+  const myTotalRefund = myRefundArray.reduce((acc: any, refund: any) => {
+    return acc + refund.refund;
+  }, 0);
+
+  const usersRefundArray = users.users.map((objet) => objet["to" + name] || [{ refund: 0 }]);
+
+  const totalUsersRefund = usersRefundArray.reduce((acc, refund) => {
+    console.log(refund[0]);
+    return acc + refund[0].refund;
+  }, 0);
+
+  const allRefundResult = myTotalRefund - totalUsersRefund;
+  const totalBalance = parseFloat((creditTotal - debtTotal + allRefundResult).toFixed(2));
+
+  console.log(totalUsersRefund, usersRefundArray, totalBalance, "la somme ici");
+
   const handleToggleRefundModale = (toRefund: string, debt: number) => {
     setToggleRefundForm(!toggleRefundForm);
     setUserToRefund(toRefund);
@@ -91,33 +128,66 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
       setToggleRefundForm(false);
     }
   };
-
   return (
-    <>
-      {toggleDeleteUser && <DeleteUser name={name} setToggle={setToggle} setToggleDelete={setToggleDeleteUser} />}
-      {togglePaymentForm && <PaymentForm name={name} id={id} setToggle={setToggle} setTogglePaymentForm={setTogglePaymentForm} />}
+    <div>
+      {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />}
+      {togglePaymentForm && <PaymentForm name={name} id={id} setTogglePaymentForm={setTogglePaymentForm} />}
+      {toggleRefundForm && (
+        <div className={styles["modale-refund-container"]}>
+          {
+            <div className={styles["modale-refund"]}>
+              {/* <button className={styles["close-modale-btn"]} onClick={() => setToggleRefundForm(!toggleRefundForm)}>
+                X
+              </button> */}
+              <h3>You want to make a refund :</h3>
+              <form>
+                <label htmlFor="number">Amount to refund:</label>
+                <input type="number" id="number" value={valueToRefund} placeholder="0" autoFocus onChange={handleValueToRefund} />
+                {/* <button type="submit" className={styles["btn-refund"]} onClick={handleRefund}>
+                  Refund
+                </button> */}
+                <div className={styles["btns-modale-container"]}>
+                  <button type="button" className={styles.no} onClick={() => setToggleRefundForm(!toggleRefundForm)}>
+                    No
+                  </button>
+                  <button type="submit" className={styles.yes} onClick={handleRefund}>
+                    Yes
+                  </button>
+                </div>
+              </form>
+            </div>
+          }
+        </div>
+      )}
 
       <div className={styles["plus-container"]}>
-        <div className={styles["total-container"]}>
+        <div className={styles["title-container"]}>
           <h3>
             {/* {name} Total : <span className={styles.positive}>{(creditTotal - debtTotal).toFixed(2)}</span> */}
-            DashBoard
+            Dashboard: {name}
           </h3>
-          <Image src={BackLogo} alt="back icon" onClick={() => setToggle(false)}></Image>
+          <Link href={"/"}>
+            <Image src={HomeIcon} alt="home icon" />
+          </Link>
+        </div>
+        <div className={styles["total-container"]}>
+          <p>Your total balance:</p>
+          <span className={totalBalance > 0 ? styles.positive : totalBalance < 0 ? styles.negative : ""}>{totalBalance}</span>
         </div>
         <div className={styles["debt-container"]}>
           {/* <Transaction name={name} /> */}
           <h3>Balance details:</h3>
           <div>
             <ul>
-              {totalDebt.map((result, index) => {
+              {totalDebtArray.map((result, index) => {
                 const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
 
                 console.log(debtDifference, "ici");
                 const user = users.users.filter((el) => el.name === result.name);
                 const debtResult = isNaN(debtDifference) ? null : debtDifference - users.users[id]["to" + result.name][0].refund;
-                const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0].id]["to" + name][0].refund;
-
+                console.log(users.users[user[0]?.id], "regarde la");
+                const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0]?.id]["to" + name][0]?.refund;
+                // const creditresult = 2;
                 console.log(creditresult, debtResult, "credit et dette ");
 
                 if (isNaN(debtDifference)) {
@@ -157,65 +227,7 @@ export default function DebtModale({ id, name, setToggle }: ModaleDebtProps) {
             <Image src={PaymentIcon} alt="payment icon"></Image>
           </div>
         </div>
-        {/* {toggleRefundForm && (
-        <div className={styles["modale-refund-container"]}>
-          {
-            <div className={styles["modale-refund"]}>
-              <button className={styles["close-modale-btn"]} onClick={() => setToggleRefundForm(!toggleRefundForm)}>
-                X
-              </button>
-              <form>
-                <label htmlFor="number">Amount to refund:</label>
-                <input type="number" id="number" value={valueToRefund} onChange={handleValueToRefund} />
-                <button type="submit" className={styles["btn-refund"]} onClick={handleRefund}>
-                  Refund
-                </button>
-              </form>
-            </div>
-          }
-        </div>
-      )}
-      <div className={styles["modale-container"]}>
-        <div className={styles.modale}>
-          <button type="button" className={styles["btn-toggle-modale"]} onClick={() => setToggle(false)}>
-            X
-          </button>
-          <h2>Debt Dashboard:</h2>
-          {names.length > 1 ? (
-            <ul>
-              {totalDebt.map((result, index) => {
-                const debtDifference = result.total - debtsOwedToMe[index].totalValueOfDebt;
-                const user = users.users.filter((el) => el.name === result.name);
-                const debtResult = isNaN(debtDifference) ? null : debtDifference - users.users[id]["to" + result.name][0].refund;
-                const creditresult = isNaN(debtDifference) ? null : debtDifference + users.users[user[0].id]["to" + name][0].refund;
-
-                if (isNaN(debtDifference)) {
-                  return null;
-                }
-
-                return (
-                  <li key={index} className={styles["user-card"]}>
-                    {<span>{`${result.name} :  `}</span>}
-
-                    {debtDifference > 0 && debtResult !== 0 ? "Debt:" + " " + debtResult?.toFixed(2) : " "}
-                    {debtDifference < 0 && creditresult !== 0 ? "Credit:" + " " + creditresult.toFixed(2) : " "}
-                    {(creditresult && debtResult) === 0 && " 0"}
-
-                    {debtDifference - users.users[id]["to" + result.name][0].refund > 0 && (
-                      <button onClick={() => handleToggleRefundModale(result.name, debtDifference)} className={styles["btn-refund"]}>
-                        Refund
-                      </button>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p>Not enought user in the group!</p>
-          )}
-        </div>
-      </div> */}
       </div>
-    </>
+    </div>
   );
 }

@@ -33,7 +33,7 @@ export type Transaction = {
 export interface PaymentFormProps {
   name: string;
   id: number;
-  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  // setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setTogglePaymentForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -51,7 +51,7 @@ export interface TransactionProps {
 }
 export interface DeleteUserProps {
   name: string;
-  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
+  // setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   setToggleDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export interface UserCardProps {
