@@ -7,12 +7,14 @@ import { useRouter } from "next/router";
 import { redirect } from "next/navigation";
 
 export default function DeleteUser({ name, setToggleDelete }: DeleteUserProps) {
+  const router = useRouter();
   const dispatch = useDispatch();
   const handleDeleteUser = () => {
+    // router.push("/");
     dispatch(deleteUser({ name: name }));
 
     setToggleDelete(false);
-    redirect("/");
+    router.push("/");
   };
   return (
     <div className={styles["delete-container"]}>
