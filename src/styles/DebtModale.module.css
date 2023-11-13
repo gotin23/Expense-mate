@@ -69,6 +69,9 @@ align-items: center;
     font-size: 28px;
    
 }
+.balance{
+    text-align: right;
+}
 .debt-container ul{
 
 
@@ -86,8 +89,8 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.228) ;
 }
 .debt-container li button{
  border: none;
- border-radius: 8px;
- padding: 2px 5px;
+ border-radius: 4px;
+ padding: 4px 6px;
  color: var(--color-secondary);
  background-color: var(--color-tertiary);
  cursor: pointer;

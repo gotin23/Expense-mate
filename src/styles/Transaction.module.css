@@ -34,6 +34,13 @@
   }
   .table tr{
     height: 40px;
+    
+   
+  }
+  .table tr:nth-child(odd){
+    height: 40px;
+    background-color: rgba(110, 143, 241, 0.165);
+
    
   }
   

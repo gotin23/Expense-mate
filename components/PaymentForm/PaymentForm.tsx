@@ -37,12 +37,15 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
   const [selectedOption, setSelectedOption] = useState("");
   const [stepForm, setStepForm] = useState(1);
   const [note, setNote] = useState("");
+  console.log(options, "options");
   const handleStepForm = (e: SyntheticEvent) => {
     e.preventDefault();
     if (stepForm === 1 && parseFloat(amount) > 1) {
       setStepForm(2);
     }
-    if (stepForm === 2) {
+    const oneIsChecked = options.some((objet) => objet.isChecked === true);
+    console.log(oneIsChecked);
+    if (stepForm === 2 && oneIsChecked) {
       setStepForm(3);
     }
     if (stepForm === 3) {
@@ -111,7 +114,7 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
             <h3>Choose a amount:</h3>
             <div className={styles["amount-container"]}>
               {/* <label htmlFor="amount">Amount:</label> */}
-              <input type="number" placeholder="0" id="number" autoFocus value={amount} className={styles["input-number"]} onChange={handleInputAmount} />
+              <input type="number" min={0} placeholder="0" id="number" autoFocus value={amount} className={styles["input-number"]} onChange={handleInputAmount} />
             </div>
             {/* <div className={styles["btns-container"]}>
               <button type="button" className={styles["btn-cancel"]}>
@@ -135,9 +138,9 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
                     type="checkbox"
                     id={`user-checkbox-${index}`}
                     autoFocus
-                    readOnly={name === names ? true : false}
-                    checked={name !== names ? options[index]?.isChecked : true}
-                    onChange={name === names ? undefined : () => handleCheckBoxChange(index)}
+                    // readOnly={name === names ? true : false}
+                    checked={options[index]?.isChecked}
+                    onChange={() => handleCheckBoxChange(index)}
                   />
                 </div>
               ))}

@@ -244,12 +244,14 @@ export default function Dashboard() {
   };
   const handleRefund = (e: SyntheticEvent) => {
     e.preventDefault();
-    // if (debtAmount >= users.users[id]["to" + userToRefund][0].refund + parseFloat(valueToRefund)) {
+    console.log(parseFloat(valueToRefund), Math.abs(debtAmount));
+    if (Math.abs(debtAmount) >= parseFloat(valueToRefund)) {
+      const currentDate = new Date();
+      const date = currentDate.toISOString().split("T")[0];
+      dispatch(addRefund({ id: id, valueToRefund: parseFloat(valueToRefund), userRefund: userToRefund, from: name, date: date }));
+      setToggleRefundForm(false);
+    }
 
-    const currentDate = new Date();
-    const date = currentDate.toISOString().split("T")[0];
-    dispatch(addRefund({ id: id, valueToRefund: parseFloat(valueToRefund), userRefund: userToRefund, from: name, date: date }));
-    setToggleRefundForm(false);
     // }
   };
 
@@ -267,7 +269,7 @@ export default function Dashboard() {
               <h3>You want to make a refund :</h3>
               <form>
                 <label htmlFor="number">Amount to refund:</label>
-                <input type="number" id="number" value={valueToRefund} placeholder="0" autoFocus onChange={handleValueToRefund} />
+                <input type="number" min={0} id="number" value={valueToRefund} placeholder="0" autoFocus onChange={handleValueToRefund} />
                 {/* <button type="submit" className={styles["btn-refund"]} onClick={handleRefund}>
                   Refund
                 </button> */}
@@ -304,6 +306,7 @@ export default function Dashboard() {
           {!switchTransactionBalance && (
             <>
               <h3>Balance details:</h3>
+              <p className={styles.balance}>Balance</p>
               <div>
                 <ul>
                   {totalDebtArrayfilter.map((result, index) => {
@@ -329,19 +332,19 @@ export default function Dashboard() {
                       <li key={index} className={styles["user-card"]}>
                         {<p>{`${result.name} :  `}</p>}
                         {tt < 0 && (
-                          <button onClick={() => handleToggleRefundModale(result.name, debtDifference)} className={styles["btn-refund"]}>
+                          <button onClick={() => handleToggleRefundModale(result.name, tt)} className={styles["btn-refund"]}>
                             Refund
                           </button>
                         )}
 
                         {tt < 0 && (
                           <p>
-                            balance: <span className={styles.negative}>{tt.toFixed(2)}</span>
+                            <span className={styles.negative}>{tt.toFixed(2)}</span>
                           </p>
                         )}
                         {tt > 0 && (
                           <p>
-                            balance: <span className={styles.positive}>{tt.toFixed(2)}</span>
+                            <span className={styles.positive}>{tt.toFixed(2)}</span>
                           </p>
                         )}
                         {tt === 0 && <p>0</p>}
