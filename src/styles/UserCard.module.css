@@ -281,13 +281,12 @@ min-height: 120px;
     .card{
         width: 100%;
         height: 70px;
-        /* border-top:1px solid rgba(0, 0, 0, 0.379) ; */
-        border-bottom:1px solid rgba(0, 0, 0, 0.217) ;
+      
         display: flex;
         /* margin-bottom: 1px; */
-        margin-top: 2px;
+        margin-top: 1px;
         /* background-color:var(--color-secondary); */
-        background-color: #3100ff17;
+        background-color:var(--color-secondary);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -334,6 +333,7 @@ min-height: 120px;
     .btn-plus img{
         width: 45px;
         height: 45px;
+        filter: drop-shadow(1px 1px 5px rgba(27, 63, 172, 0.351));
       
 
     }

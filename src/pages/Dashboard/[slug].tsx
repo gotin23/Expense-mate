@@ -327,17 +327,24 @@ export default function Dashboard() {
 
                     return (
                       <li key={index} className={styles["user-card"]}>
-                        {<span>{`${result.name} :  `}</span>}
-
-                        {tt < 0 && <p>je dois: {tt.toFixed(2)}</p>}
-                        {tt > 0 && <p>me doit: {tt.toFixed(2)}</p>}
-                        {tt === 0 && <p>0</p>}
-
+                        {<p>{`${result.name} :  `}</p>}
                         {tt < 0 && (
                           <button onClick={() => handleToggleRefundModale(result.name, debtDifference)} className={styles["btn-refund"]}>
                             Refund
                           </button>
                         )}
+
+                        {tt < 0 && (
+                          <p>
+                            balance: <span className={styles.negative}>{tt.toFixed(2)}</span>
+                          </p>
+                        )}
+                        {tt > 0 && (
+                          <p>
+                            balance: <span className={styles.positive}>{tt.toFixed(2)}</span>
+                          </p>
+                        )}
+                        {tt === 0 && <p>0</p>}
 
                         {/* {debtResult}
                     {creditresult} */}
@@ -356,7 +363,7 @@ export default function Dashboard() {
           </div>
           <div className={styles["btn-transation"]} onClick={() => setSwitchTransactionBalance(!switchTransactionBalance)}>
             <p>{!switchTransactionBalance ? "Transactions" : "Balance"}</p>
-            <Image src={!switchTransactionBalance ? TransactionIcon : BalanceIcon} alt="Transaction icon"></Image>
+            <Image src={!switchTransactionBalance ? TransactionIcon : BalanceIcon} alt={!switchTransactionBalance ? "Transactions" : "Balance"}></Image>
           </div>
           <div className={styles["btn-payment"]} onClick={() => setTogglePaymentForm(!togglePaymentForm)}>
             <p>Payment</p>

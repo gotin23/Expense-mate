@@ -111,7 +111,7 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
             <h3>Choose a amount:</h3>
             <div className={styles["amount-container"]}>
               {/* <label htmlFor="amount">Amount:</label> */}
-              <input type="number" placeholder="0" autoFocus value={amount} className={styles["input-number"]} onChange={handleInputAmount} />
+              <input type="number" placeholder="0" id="number" autoFocus value={amount} className={styles["input-number"]} onChange={handleInputAmount} />
             </div>
             {/* <div className={styles["btns-container"]}>
               <button type="button" className={styles["btn-cancel"]}>
@@ -130,10 +130,11 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
               {/* <p className={styles["form-participants"]}>Participants:</p> */}
               {names.map((names, index) => (
                 <div key={index} className={styles["label-and-checkbox"]}>
-                  <label htmlFor="user-checkbox">{names}:</label>
+                  <label htmlFor={`user-checkbox-${index}`}>{names}:</label>
                   <input
                     type="checkbox"
                     id={`user-checkbox-${index}`}
+                    autoFocus
                     readOnly={name === names ? true : false}
                     checked={name !== names ? options[index]?.isChecked : true}
                     onChange={name === names ? undefined : () => handleCheckBoxChange(index)}
