@@ -12,6 +12,9 @@
     padding: 20px;
     text-align: center;
 }
+.delete-container span{
+font-size: 17px;
+}
 .btns-container{
   height: 20%;
     width: 70%;

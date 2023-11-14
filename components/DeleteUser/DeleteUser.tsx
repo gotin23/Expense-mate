@@ -19,6 +19,7 @@ export default function DeleteUser({ name, setToggleDelete }: DeleteUserProps) {
   return (
     <div className={styles["delete-container"]}>
       <h3>Are you sure you want to delete {name}?</h3>
+      <span>(All his transaction will be deleted)</span>
       <div className={styles["btns-container"]}>
         <button type="button" className={styles.no} onClick={() => setToggleDelete(false)}>
           No

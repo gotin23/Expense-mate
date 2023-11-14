@@ -1,0 +1,68 @@
+.modale-refund-container {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(236, 13, 13, 0.377);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modale-refund {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-secondary);
+
+    /* display: flex; */
+    color: var(--color-primary);
+    /* justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative; */
+    text-align: center;
+    padding: 20px;
+}
+.modale-refund h3{
+   font-size: 35px;
+}
+.modale-refund form{
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.modale-refund input{
+    border: none;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 80px;
+    outline: none;
+    text-align: center;
+    margin-top: 30px;
+}
+.btns-modale-container{
+    height: 20%;
+      width: 70%;
+   display: flex;
+   justify-content: space-around;
+   align-items: flex-start;
+  margin-top: 60px;
+  
+  
+  }
+  .yes,.no{
+      width: 80px;
+      height: 32px; 
+      border: none;
+      font-size: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+  }
+  .yes{
+      background-color: var(--color-green);
+  }
+  .no{
+      background-color: var(--color-red);
+  }

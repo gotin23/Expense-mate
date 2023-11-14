@@ -60,6 +60,13 @@ export interface UserCardProps {
     id: number; // ou le type approprié pour 'id'
   };
 }
+export interface TransactionDetail {
+  from: string;
+  date: string;
+  category: string;
+  participants: string[];
+  payment: number;
+}
 // export interface UserCardProps {
 //   key: number;
 //   props: String;

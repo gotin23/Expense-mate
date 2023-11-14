@@ -54,7 +54,7 @@ align-items: center;
 .total-container span{
    font-size: 25px;
 }
-.debt-container{
+/* .debt-container{
     height: 67%;
     width: 100vw;
     color: var(--color-primary);
@@ -97,7 +97,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.228) ;
 
 
    
-}
+} */
 .btns-container{
 height: 15%;
 width: 100%;
