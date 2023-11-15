@@ -65,6 +65,7 @@ export default function Balance({ id, name }: BalanceProps) {
         <h3>Balance details:</h3>
         <p className={styles.balance}>Balance</p>
         <div>
+          {names.length < 2 && <p className={styles.message}>Add one more user for start to see your balance</p>}
           <ul>
             {totalDebtArrayfilter.map((result, index) => {
               const user = users.users.filter((el) => el.name === result.name);

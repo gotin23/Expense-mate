@@ -97,6 +97,7 @@ export default function Transaction({ name }: TransactionProps) {
           </thead>
           <tbody>{mappedTransactions}</tbody>
         </table>
+        {userTransaction.length < 1 && <p className={styles.message}>No any transaction</p>}
       </div>
     </>
   );

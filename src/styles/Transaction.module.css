@@ -53,5 +53,9 @@
   .my-transaction{
  color: green;
   }
+  .message{
+    text-align: center;
+    margin-top: 30px;
+  }
 
   

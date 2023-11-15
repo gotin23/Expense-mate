@@ -12,8 +12,8 @@ import Image from "next/image";
 // import deleteIcon from "../../public/assets/icons/delete-4-svgrepo-com.svg";
 // import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
 // import debtIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
-import UserIcon from "../../public/assets/icons/user-svgrepo-com.svg";
-import PlusIcon from "../../public/assets/icons/Plus Circle.svg";
+// import UserIcon from "../../public/assets/icons/user-svgrepo-com.svg";
+import PlusIcon from "../../public/assets/icons/Plus Icon.svg";
 import Link from "next/link";
 
 export default function UserCard({ props }: UserCardProps) {

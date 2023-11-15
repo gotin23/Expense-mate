@@ -48,3 +48,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.228) ;
 .negative{
     color: var(--color-red);
 }
+.message{
+    margin-top: 30px;
+    text-align: center;
+}
