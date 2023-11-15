@@ -26,6 +26,16 @@ export default function Dashboard() {
   const endURL = URL.split("/");
   const name = endURL[endURL.length - 1];
   const onUser = users.users.filter((el) => el.name === name);
+
+  // const router = useRouter();
+  // // Récupérez le chemin de l'URL actuelle
+  // const currentPath = router.asPath;
+  // // Trouvez le dernier index du caractère '/' dans le chemin de l'URL
+  // const lastIndex = currentPath.lastIndexOf("/");
+  // // Récupérez tout ce qui se trouve après le dernier '/'
+  // const name = lastIndex !== -1 ? currentPath.slice(lastIndex + 1) : "";
+  // const onUser = users.users.filter((el) => el.name === name);
+  // const id = onUser[0].id;
   // useEffect(() => {
   //   if (onUser.length === 0) {
   //     console.log(onUser, name, "onrentre dans le useEffect", router);

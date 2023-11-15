@@ -44,6 +44,7 @@ export default function Home() {
           {users.users.map((user) => (
             <UserCard key={user.id} props={{ name: user.name, id: user.id }} />
           ))}
+          {users.users.length === 0 && <p className={styles.empty}>Add users to start</p>}
         </div>
 
         <div className={styles["btn-add-user-container"]} onClick={() => setToggleAddUser(!toggleAddUser)}>
