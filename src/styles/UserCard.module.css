@@ -300,6 +300,7 @@ min-height: 120px;
         display: flex;
         justify-content: flex-start;
         align-items: flex-end;
+        padding:0px 10px;
     }
     .user-container img{
         height: 28px;
@@ -309,9 +310,12 @@ min-height: 120px;
     
     }
     .user-container p{
-        font-size: 24px;
+        font-size: 22px;
         color: var(--color-primary);
         margin-bottom: 5px;
+        text-transform: uppercase ;
+        font-weight: bold;
+        /* font-family: 'holy'; */
     
     }
     .btn-plus{
@@ -333,7 +337,7 @@ min-height: 120px;
     .btn-plus img{
         width: 45px;
         height: 45px;
-        filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.351));
+        /* filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.351)); */
       
 
     }

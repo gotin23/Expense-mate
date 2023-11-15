@@ -4,24 +4,21 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Types/types";
-// import { ModaleDebtProps } from "../../../Types/types";
-// import { addRefund } from "../../redux/reducers/usersReducer";
 import Transaction from "../../../components/Transaction/Transaction";
 import PaymentForm from "../../../components/PaymentForm/PaymentForm";
 import DeleteUser from "../../../components/DeleteUser/DeleteUser";
-// import BackLogo from "../../../public/assets/icons/Back.svg";
 import DeleteIcon from "../../../public/assets/icons/delete-4-svgrepo-com.svg";
 import PaymentIcon from "../../../public/assets/icons/Euro Banknote.svg";
 import HomeIcon from "../../../public/assets/icons/Home Icon.svg";
 import TransactionIcon from "../../../public/assets/icons/Transaction Icon.svg";
 import BalanceIcon from "../../../public/assets/icons/Account Icon.svg";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 import Balance from "../../../components/Balance/Balance";
 
 export default function Dashboard() {
   const users = useSelector((state: RootState) => state.user);
-  const router = useRouter();
+  // const router = useRouter();
   const URL = window.location.pathname;
   const endURL = URL.split("/");
   const name = endURL[endURL.length - 1];
@@ -124,52 +121,14 @@ export default function Dashboard() {
   const allRefundResult = myTotalRefund - totalUsersRefund;
   const totalBalance = parseFloat((creditTotal - debtTotal + allRefundResult).toFixed(2));
 
-  // const handleValueToRefund = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setValueToRefund(e.target.value);
-  // };
-  // const handleRefund = (e: SyntheticEvent) => {
-  //   e.preventDefault();
-  //   console.log(parseFloat(valueToRefund), Math.abs(debtAmount));
-  //   if (Math.abs(debtAmount) >= parseFloat(valueToRefund)) {
-  //     const currentDate = new Date();
-  //     const date = currentDate.toISOString().split("T")[0];
-  //     dispatch(addRefund({ id: id, valueToRefund: parseFloat(valueToRefund), userRefund: userToRefund, from: name, date: date }));
-  //     setToggleRefundForm(false);
-  //   }
-  // };
-
   return (
     <div>
       {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />}
       {togglePaymentForm && <PaymentForm name={name} id={id} setTogglePaymentForm={setTogglePaymentForm} />}
-      {toggleRefundForm && (
-        <div className={styles["modale-refund-container"]}>
-          {
-            // <div className={styles["modale-refund"]}>
-            //   <h3>You want to make a refund :</h3>
-            //   <form>
-            //     <label htmlFor="number">Amount to refund:</label>
-            //     <input type="number" min={0} id="number" value={valueToRefund} placeholder="0" autoFocus onChange={handleValueToRefund} />
-            //     <div className={styles["btns-modale-container"]}>
-            //       <button type="button" className={styles.no} onClick={() => setToggleRefundForm(!toggleRefundForm)}>
-            //         No
-            //       </button>
-            //       <button type="submit" className={styles.yes} onClick={handleRefund}>
-            //         Yes
-            //       </button>
-            //     </div>
-            //   </form>
-            // </div>
-          }
-        </div>
-      )}
 
       <div className={styles["plus-container"]}>
         <div className={styles["title-container"]}>
-          <h3>
-            {/* {name} Total : <span className={styles.positive}>{(creditTotal - debtTotal).toFixed(2)}</span> */}
-            Dashboard: {name}
-          </h3>
+          <h3>Dashboard: {name}</h3>
           <Link href={"/"}>
             <Image src={HomeIcon} alt="home icon" />
           </Link>
@@ -178,7 +137,7 @@ export default function Dashboard() {
           <p>Your total balance:</p>
           <span className={totalBalance > 0 ? styles.positive : totalBalance < 0 ? styles.negative : ""}>{totalBalance}</span>
         </div>
-        {/* <div className={styles["debt-container"]}> */}
+
         {switchTransactionBalance && <Transaction name={name} />}
         {!switchTransactionBalance && <Balance name={name} id={id} />}
 

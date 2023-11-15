@@ -13,18 +13,18 @@ import Image from "next/image";
 // import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
 // import debtIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
 import UserIcon from "../../public/assets/icons/user-svgrepo-com.svg";
-import PlusIcon from "../../public/assets/icons/Plus Circle Icon.svg";
+import PlusIcon from "../../public/assets/icons/Plus Circle.svg";
 import Link from "next/link";
 
 export default function UserCard({ props }: UserCardProps) {
-  const [togglePlus, setTogglePlus] = useState(false);
-  console.log(props);
+  // const [togglePlus, setTogglePlus] = useState(false);
+  // console.log(props);
   return (
     <>
       {/* {togglePlus && <DebtModale id={props.id} name={props.name} setToggle={setTogglePlus} />} */}
       <div className={styles.card}>
         <div className={styles["user-container"]}>
-          <Image src={UserIcon} alt="user icon"></Image>
+          {/* <Image src={UserIcon} alt="user icon"></Image> */}
           <p>{props.name}</p>
         </div>
         <div className={styles["btn-plus"]}>
