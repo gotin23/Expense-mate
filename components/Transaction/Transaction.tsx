@@ -12,6 +12,7 @@ export default function Transaction({ name }: TransactionProps) {
   const [sortedTransaction, setSortedTransaction] = useState(users.allTransactions);
   const [sortedByAmount, setSortedByAmount] = useState(false);
   const [sortedByName, setSortedByName] = useState(false);
+  const [sortedByDate, setSortedByDate] = useState(false);
 
   const [transactionDetail, setTransactionDetail] = useState<TransactionDetail>({
     from: "",
@@ -51,7 +52,18 @@ export default function Transaction({ name }: TransactionProps) {
       setSortedByName(true);
       setSortedTransaction(sortedByNameAscending);
     }
-    console.log(sortedByNameAscending, sortedByNameDescending);
+  };
+  const sortByDate = () => {
+    const sortedByLatestDate = users.allTransactions;
+    const sortedByOldestDate = [...sortedByLatestDate].reverse();
+
+    if (!sortedByDate) {
+      setSortedByDate(true);
+      setSortedTransaction(sortedByOldestDate);
+    } else {
+      setSortedByDate(false);
+      setSortedTransaction(sortedByLatestDate);
+    }
   };
 
   const userTransaction = sortedTransaction.filter((tran) => tran.participants.includes(name));
@@ -77,7 +89,7 @@ export default function Transaction({ name }: TransactionProps) {
           <thead>
             <tr>
               <th onClick={sortByName}>From</th>
-              <th>Date</th>
+              <th onClick={sortByDate}>Date</th>
               <th>Note</th>
               <th>Participants</th>
               <th onClick={sortByAmount}>Amount</th>
