@@ -26,13 +26,13 @@ export default function Dashboard() {
   const endURL = URL.split("/");
   const name = endURL[endURL.length - 1];
   const onUser = users.users.filter((el) => el.name === name);
-  useEffect(() => {
-    if (onUser.length === 0) {
-      console.log(onUser, name, "onrentre dans le useEffect", router);
-      router.push("/");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (onUser.length === 0) {
+  //     console.log(onUser, name, "onrentre dans le useEffect", router);
+  //     router.push("/");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   // console.log(router, name);
 
   const id = onUser[0]?.id;

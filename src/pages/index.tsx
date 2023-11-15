@@ -52,7 +52,6 @@ export default function Home() {
         </div>
         {toggleAddUser && <AddUserToGroup setToggle={setToggleAddUser} />}
 
-        {/* <MyGroup /> */}
         <Analytics />
       </main>
     </>
