@@ -21,17 +21,25 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
   const [toggleMsgMaximumPeopleInGroup, setToggleMaximunPeopleInGroup] = useState(false);
 
   const HandleAddUser = (e: SyntheticEvent) => {
+    const nameWithoutSpace = name.replace(/ /g, "");
     e.preventDefault();
-    if (!names.includes(name) && users.users.length < 10 && name.length < 18) {
-      dispatch(addUser({ id: users.users.length, name: name, payment: [], ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name]: [{ refund: 0 }] }), {}) }));
+    if (!names.includes(nameWithoutSpace) && users.users.length < 10 && nameWithoutSpace.length < 18) {
+      dispatch(
+        addUser({
+          id: users.users.length,
+          name: nameWithoutSpace,
+          payment: [],
+          ...names.reduce((acc, name: string) => ({ ...acc, ["to" + name.replace(/ /g, "")]: [{ refund: 0 }] }), {}),
+        })
+      );
       setUserWaiting(userWaiting + 1);
 
       setToggle(false);
-    } else if (name.length >= 18) {
+    } else if (nameWithoutSpace.length >= 18) {
       setToggleMsgUsernameLength(!toggleMsgUsernameLength);
     } else if (users.users.length >= 10) {
       setToggleMaximunPeopleInGroup(!toggleMsgMaximumPeopleInGroup);
-    } else if (names.includes(name)) {
+    } else if (names.includes(nameWithoutSpace)) {
       setToggleMsgUsernameExist(!toggleMsgUsernameExist);
     }
   };
