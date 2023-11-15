@@ -48,7 +48,7 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
     if (stepForm === 2 && oneIsChecked) {
       setStepForm(3);
     }
-    if (stepForm === 3) {
+    if (stepForm === 3 && note.length < 51) {
       console.log(note);
       handlePayment();
     }
@@ -116,14 +116,6 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
               {/* <label htmlFor="amount">Amount:</label> */}
               <input type="number" min={0} placeholder="0" id="number" autoFocus value={amount} className={styles["input-number"]} onChange={handleInputAmount} />
             </div>
-            {/* <div className={styles["btns-container"]}>
-              <button type="button" className={styles["btn-cancel"]}>
-                Cancel
-              </button>
-              <button type="button" className={styles["btn-valide"]} onClick={handleStepForm}>
-                Valider
-              </button>
-            </div> */}
           </div>
         )}
         {stepForm === 2 && (
@@ -145,30 +137,15 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
                 </div>
               ))}
             </div>
-            {/* <div className={styles["btns-container"]}>
-              <button type="button" className={styles["btn-cancel"]}>
-                Previous
-              </button>
-              <button type="button" className={styles["btn-valide"]} onClick={handleStepForm}>
-                Valider
-              </button>
-            </div> */}
           </div>
         )}
         {stepForm === 3 && (
           <div className={styles["step3-container"]}>
             <h3>Add a note ?</h3>
             <div className={styles["note-container"]}>
-              <input type="text" id="note" autoFocus value={note} onChange={handleNote}></input>
+              <input type="text" id="note" autoFocus value={note} placeholder="your note here" onChange={handleNote}></input>
+              <span>Maximum caracter {note.length + "/50"}</span>
             </div>
-            {/* <div className={styles["btns-container"]}>
-              <button type="button" className={styles["btn-cancel"]}>
-                Previous
-              </button>
-              <button type="button" className={styles["btn-valide"]} onClick={handleStepForm}>
-                Valider
-              </button>
-            </div> */}
           </div>
         )}
         <div className={styles["btns-container"]}>

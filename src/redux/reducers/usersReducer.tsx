@@ -77,7 +77,7 @@ const userSlice = createSlice({
       const { id, valueToRefund, userRefund, from, date } = action.payload;
       console.log(state.users[id], id, valueToRefund, userRefund);
       state.users[id]["to" + userRefund][0].refund = state.users[id]["to" + userRefund][0].refund + valueToRefund;
-      state.allTransactions.unshift({ payment: valueToRefund, participants: [userRefund], date: date, category: "Refund", from: from });
+      state.allTransactions.unshift({ payment: valueToRefund, participants: [userRefund, from], date: date, category: "Refund", from: from });
     },
   },
 });

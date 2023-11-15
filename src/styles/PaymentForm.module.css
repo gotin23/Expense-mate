@@ -124,12 +124,20 @@ font-size: 22px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+   
+
+}
+.note-container span{
+    font-size: 15px;
+    margin-top: 10px;
+
    
 
 }
 .note-container input{
     width: 80%;
-    height: 30%;
+    height: 35%;
     border-radius: 8px;
     font-size: 22px;
     padding: 10px;
