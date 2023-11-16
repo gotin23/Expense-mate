@@ -43,7 +43,14 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
       setToggleMsgUsernameExist(!toggleMsgUsernameExist);
     }
   };
+  const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const onlyLetters = /^[A-Za-z]+$/;
 
+    if (onlyLetters.test(inputValue) || inputValue === "") {
+      setName(inputValue);
+    }
+  };
   return (
     <div className={styles["form-container"]}>
       <form>
@@ -51,7 +58,7 @@ export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {
         <h2>Choose a username!</h2>
         <div className={styles["input-container"]}>
           <label htmlFor="name">Username:</label>
-          <input type="text" id="name" value={name} placeholder="Enter a name" autoFocus onChange={(e) => setName(e.target.value)} />
+          <input type="text" id="name" value={name} placeholder="Enter a name" autoFocus onChange={handleUsername} />
         </div>
         {toggleMsgUsernameLength && <p>Please ensure that your username does not exceed 18 characters</p>}
         {toggleMsgMaximumPeopleInGroup && <p>Group limit: Maximum of 10 members per group allowed</p>}

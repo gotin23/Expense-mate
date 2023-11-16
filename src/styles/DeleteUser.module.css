@@ -1,6 +1,6 @@
 .delete-container{
     z-index: 6;
-    position: fixed;
+    position: absolute;
     inset: 0;
     background-color: var(--color-secondary);
     color:var(--color-primary);

@@ -122,11 +122,11 @@ export default function Dashboard() {
   const totalBalance = parseFloat((creditTotal - debtTotal + allRefundResult).toFixed(2));
 
   return (
-    <div>
-      {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />}
+    <>
       {togglePaymentForm && <PaymentForm name={name} id={id} setTogglePaymentForm={setTogglePaymentForm} />}
 
       <div className={styles["plus-container"]}>
+        {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />}
         <div className={styles["title-container"]}>
           <h3>Dashboard: {name}</h3>
           <Link href={"/"}>
@@ -156,6 +156,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

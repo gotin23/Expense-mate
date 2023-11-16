@@ -13,7 +13,7 @@ import Image from "next/image";
 // import paymentIcon from "../../public/assets/icons/money-dollar-cash-payment-svgrepo-com.svg";
 // import debtIcon from "../../public/assets/icons/wallet-money-cash-svgrepo-com.svg";
 // import UserIcon from "../../public/assets/icons/user-svgrepo-com.svg";
-import PlusIcon from "../../public/assets/icons/Plus Icon.svg";
+import PlusIcon from "../../public/assets/icons/Plus Fill.svg";
 import Link from "next/link";
 
 export default function UserCard({ props }: UserCardProps) {
