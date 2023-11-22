@@ -6,6 +6,7 @@
     overflow-x: hidden;
     height: 67%;
     color: var(--color-primary);
+  
    
   }
    .transaction-container h3{
@@ -48,14 +49,31 @@
   
   .table th {
     background-color: #f2f2f2;
-    font-size: 16px;
+    font-size: 15px;
+   
   }
+ 
   .my-transaction{
  color: green;
   }
   .message{
     text-align: center;
     margin-top: 30px;
+  }
+  .switch{
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+  }
+  .from,.amount,.date{
+    position: relative;
+
+    /* width: 100%; */
+  }
+  .note,.participants{
+    cursor: default;
   }
 
   

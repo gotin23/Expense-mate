@@ -5,6 +5,8 @@ import { RootState, Transaction } from "../../Types/types";
 import { TransactionProps } from "../../Types/types";
 import Showtransaction from "../ShowTransaction/Showtransaction";
 import { TransactionDetail } from "../../Types/types";
+import SwitchIcon from "../../public/assets/icons/switch.svg";
+import Image from "next/image";
 
 export default function Transaction({ name }: TransactionProps) {
   const users = useSelector((state: RootState) => state.user);
@@ -88,11 +90,18 @@ export default function Transaction({ name }: TransactionProps) {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th onClick={sortByName}>From</th>
-              <th onClick={sortByDate}>Date</th>
-              <th>Note</th>
-              <th>Participants</th>
-              <th onClick={sortByAmount}>Amount</th>
+              <th onClick={sortByName} className={styles.from}>
+                From
+                <Image src={SwitchIcon} alt="switch icon" className={styles.switch} />
+              </th>
+              <th onClick={sortByDate} className={styles.date}>
+                Date <Image src={SwitchIcon} alt="switch icon" className={styles.switch} />
+              </th>
+              <th className={styles.note}>Note</th>
+              <th className={styles.participants}>Participants</th>
+              <th onClick={sortByAmount} className={styles.amount}>
+                Amount <Image src={SwitchIcon} alt="switch icon" className={styles.switch} />
+              </th>
             </tr>
           </thead>
           <tbody>{mappedTransactions}</tbody>
