@@ -313,10 +313,25 @@ min-height: 120px;
         font-size: 22px;
         color: var(--color-primary);
         margin-bottom: 5px;
-        text-transform: uppercase ;
+        /* text-transform: uppercase ; */
         font-weight: bold;
         /* font-family: 'holy'; */
     
+    }
+    .link{
+       text-decoration: none ;
+    
+    }
+    .card-container{
+        position: relative;
+    }
+    .delete{
+position:absolute;
+        left: 5px;
+        width: 20px;
+        height: 20px;
+        top: 5px;
+        cursor: pointer;
     }
     .btn-plus{
         width: 50px;
@@ -335,8 +350,8 @@ min-height: 120px;
 
     }
     .btn-plus img{
-        width: 45px;
-        height: 45px;
+        width: 30px;
+        height: 30px;
         /* filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.351)); */
       
 

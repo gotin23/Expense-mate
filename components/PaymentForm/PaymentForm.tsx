@@ -150,7 +150,7 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
         )}
         <div className={styles["btns-container"]}>
           <button type="button" className={styles["btn-cancel"]} onClick={handlePreviousStep}>
-            {stepForm > 1 ? "previous" : "Cancel"}
+            {stepForm > 1 ? "Previous" : "Cancel"}
           </button>
           <button type="submit" className={styles["btn-valide"]} onClick={handleStepForm}>
             {stepForm !== 3 ? "Next" : "Valide"}

@@ -1,7 +1,7 @@
 .delete-container{
-    z-index: 6;
+    /* z-index: 6;
     position: absolute;
-    inset: 0;
+inset:0;
     background-color: var(--color-secondary);
     color:var(--color-primary);
     display: flex;
@@ -11,6 +11,22 @@
     font-size: 25px;
     padding: 20px;
     text-align: center;
+    margin-top: 15%; */
+    position: absolute;
+    top:15%;
+    bottom: 12%;
+    right: 0;
+    left: 0;
+    background-color :var(--color-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    color: var(--color-primary);
+    font-size: 22px;
+    
+
 }
 .delete-container span{
 font-size: 17px;
@@ -26,11 +42,11 @@ margin-top: 60px;
 
 }
 .yes,.no{
-    width: 80px;
-    height: 32px; 
-    border: none;
-    font-size: 20px;
-    border-radius: 8px;
+    min-width: 80px;
+padding: 8px 6px;
+border:none;
+border-radius: 8px;
+font-size: 20px;
     cursor: pointer;
 }
 .yes{

@@ -118,10 +118,10 @@ align-items: center;
     align-items: center;
     font-size: 22px;
 } */
-.btn-delete,.btn-payment,.btn-transation{
+.btn-balance,.btn-payment,.btn-transaction{
 width: 80px;
-height: 80px;
-border-radius: 50%;
+height: 100%;
+
 display: flex;
 justify-content: center;
 align-items: center;
@@ -132,13 +132,22 @@ font-size: 15px;
 color:#ffffff;
 cursor: pointer;
 }
+/* .btn-balance,.btn-payment{
+    width: 100px;
+} */
+
+.active{
+    border-top: 3px solid #ffffff;
+
+}
 .btns-container img{
 width: 40px;
 height: 40px;
 /* margin-top: 10px; */
 }
-.btn-delete img{
-    width: 30px;
+.btn-payment img{
+    width: 50px;
+    height: 50px;
 }
 /* .btn-delete{
 background-color: var(--color-red);

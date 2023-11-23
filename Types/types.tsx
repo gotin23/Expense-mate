@@ -11,6 +11,9 @@ export interface RootState {
     allTransactions: Transaction[];
   };
 }
+export interface ToggleState {
+  modale: boolean;
+}
 
 export type AddUserToGroupProps = {
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
@@ -67,7 +70,3 @@ export interface TransactionDetail {
   participants: string[];
   payment: number;
 }
-// export interface UserCardProps {
-//   key: number;
-//   props: String;
-// }

@@ -10,6 +10,7 @@
 // export default store;
 import { configureStore } from "@reduxjs/toolkit";
 import usersReducer from "./reducers/usersReducer";
+import toggleModaleReducer from "./reducers/toggleModaleReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -21,11 +22,13 @@ const persistConfig = {
 
 // Créez un réducteur persistant en utilisant votre réducteur existant
 const persistedReducer = persistReducer(persistConfig, usersReducer);
+// const persistedToggleModaleReducer = persistReducer(persistConfig, toggleModaleReducer);
 
 // Créez le magasin Redux
 const store = configureStore({
   reducer: {
     user: persistedReducer, // Utilisez le réducteur persistant au lieu de usersReducer
+    modale: toggleModaleReducer,
   },
 });
 

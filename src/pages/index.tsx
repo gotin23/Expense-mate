@@ -14,14 +14,22 @@ import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
 import { Analytics } from "@vercel/analytics/react";
 // import MyGroup from "../../components/MyGroup/MyGroup";
 import React, { useState, useEffect } from "react";
-// import DebtModale from "../../components/DebtModale/DebtModale";
+import { modaleDeleteTrue } from "@/redux/reducers/toggleModaleReducer";
 import AddUserLogo from "../../public/assets/icons/Plus User Icon.svg";
 import Image from "next/image";
-import { RootState } from "../../Types/types";
+import { RootState, ToggleState } from "../../Types/types";
 
 export default function Home() {
   const users = useSelector((state: RootState) => state.user);
+  const toggleDeleteModale = useSelector((state: ToggleState) => state.modale);
+  const dispatch = useDispatch();
+  console.log(toggleDeleteModale, "icici ");
+
   const [toggleAddUser, setToggleAddUser] = useState(false);
+  const handleModaleAddUser = () => {
+    setToggleAddUser(!toggleAddUser);
+    dispatch(modaleDeleteTrue());
+  };
 
   return (
     <>
@@ -33,10 +41,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        {/* <div className={styles["main-title-container"]}>
-          <h1>Expense Mate</h1>
-          <h2 className={styles.description}>Simplifying shared expenses among friends, hassle-free!</h2>
-        </div> */}
+        {toggleAddUser && <AddUserToGroup setToggle={handleModaleAddUser} />}
         <div className={styles["title-container"]}>
           <h1>Expense-Mate</h1>
         </div>
@@ -47,11 +52,10 @@ export default function Home() {
           {users.users.length === 0 && <p className={styles.empty}>Add users to start</p>}
         </div>
 
-        <div className={styles["btn-add-user-container"]} onClick={() => setToggleAddUser(!toggleAddUser)}>
+        <div className={styles["btn-add-user-container"]} onClick={handleModaleAddUser}>
           <p>ADD USER</p>
           <Image src={AddUserLogo} alt="add-user-icon" className={styles["add-user-icon"]}></Image>
         </div>
-        {toggleAddUser && <AddUserToGroup setToggle={setToggleAddUser} />}
 
         <Analytics />
       </main>

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import styles from "../../../src/styles/DashBoard.module.css";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../Types/types";
 import Transaction from "../../../components/Transaction/Transaction";
@@ -11,7 +11,8 @@ import DeleteIcon from "../../../public/assets/icons/delete-4-svgrepo-com.svg";
 import PaymentIcon from "../../../public/assets/icons/Euro Banknote.svg";
 import HomeIcon from "../../../public/assets/icons/Home Icon.svg";
 import TransactionIcon from "../../../public/assets/icons/Transaction Icon.svg";
-import BalanceIcon from "../../../public/assets/icons/Account Icon.svg";
+// import BalanceIcon from "../../../public/assets/icons/Account Icon.svg";
+import BalanceIcon from "../../../public/assets/icons/Balance outline.svg";
 // import { useRouter } from "next/router";
 import Link from "next/link";
 import Balance from "../../../components/Balance/Balance";
@@ -52,12 +53,17 @@ export default function Dashboard() {
   const [valueToRefund, setValueToRefund] = useState("");
   const [debtAmount, setDebtAmount] = useState(0);
   const [switchTransactionBalance, setSwitchTransactionBalance] = useState(false);
+  const [toggleBalance, setToggleBalance] = useState(true);
+  const [toggleTransaction, setToggleTransaction] = useState(false);
 
   type TransactionItem = {
     type: string;
     valueOfDebt: number;
   };
   const names: string[] = users.users.map((user) => user.name);
+  const activeDeleteBtn = useRef<HTMLDivElement | null>(null);
+  const activeTransactionBtn = useRef<HTMLDivElement | null>(null);
+  const activePaymentBtn = useRef<HTMLDivElement | null>(null);
 
   const totalDebtArray = names.map((arrayName) => {
     const array = users.users[id] && users.users[id]["to" + arrayName];
@@ -121,12 +127,46 @@ export default function Dashboard() {
   const allRefundResult = myTotalRefund - totalUsersRefund;
   const totalBalance = parseFloat((creditTotal - debtTotal + allRefundResult).toFixed(2));
 
+  const handleShowBalance = () => {
+    // if (activeDeleteBtn.current && activeDeleteBtn.current.classList) {
+    //   activeDeleteBtn.current.classList.add("active");
+    // }
+    if (!toggleBalance) {
+      setToggleTransaction(false);
+      setToggleBalance(true);
+
+      // activeDeleteBtn.current.classList.add("active");
+    } else if (togglePaymentForm) {
+      setTogglePaymentForm(false);
+    }
+  };
+  const handleShowTransaction = () => {
+    if (!toggleTransaction) {
+      setToggleTransaction(true);
+      setToggleBalance(false);
+      setTogglePaymentForm(false);
+      // activeTransactionBtn.current.classList.add("active");
+    } else if (togglePaymentForm) {
+      setTogglePaymentForm(false);
+    }
+  };
+  const handleShowPaymentForm = () => {
+    if (!togglePaymentForm) {
+      // setToggleTransaction(true);
+      // setToggleBalance(false);
+      setTogglePaymentForm(true);
+      // activeTBtn.current.classList.add("active");
+    }
+  };
+  const btnDeleteClassName = `${styles["btn-balance"]} ${toggleBalance && !togglePaymentForm ? styles["active"] : ""}`;
+  const btnTransactionClassName = `${styles["btn-transaction"]} ${toggleTransaction && !togglePaymentForm ? styles["active"] : ""}`;
+  const btnPaymentClassName = `${styles["btn-payment"]} ${togglePaymentForm ? styles["active"] : ""}`;
+
   return (
     <>
-      {togglePaymentForm && <PaymentForm name={name} id={id} setTogglePaymentForm={setTogglePaymentForm} />}
-
       <div className={styles["plus-container"]}>
-        {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />}
+        {togglePaymentForm && <PaymentForm name={name} id={id} setTogglePaymentForm={setTogglePaymentForm} />}
+        {/* {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />} */}
         <div className={styles["title-container"]}>
           <h3>Dashboard: {name}</h3>
           <Link href={"/"}>
@@ -138,19 +178,19 @@ export default function Dashboard() {
           <span className={totalBalance > 0 ? styles.positive : totalBalance < 0 ? styles.negative : ""}>{totalBalance}</span>
         </div>
 
-        {switchTransactionBalance && <Transaction name={name} />}
-        {!switchTransactionBalance && <Balance name={name} id={id} />}
+        {toggleTransaction && <Transaction name={name} />}
+        {toggleBalance && <Balance name={name} id={id} />}
 
         <div className={styles["btns-container"]}>
-          <div className={styles["btn-delete"]} onClick={() => setToggleDeleteUser(!toggleDeleteUser)}>
-            <p>Delete</p>
-            <Image src={DeleteIcon} alt="delete icon"></Image>
+          <div className={btnDeleteClassName} onClick={handleShowBalance} ref={activeDeleteBtn}>
+            <p>Balance</p>
+            <Image src={BalanceIcon} alt="balance icon"></Image>
           </div>
-          <div className={styles["btn-transation"]} onClick={() => setSwitchTransactionBalance(!switchTransactionBalance)}>
-            <p>{!switchTransactionBalance ? "Transactions" : "Balance"}</p>
-            <Image src={!switchTransactionBalance ? TransactionIcon : BalanceIcon} alt={!switchTransactionBalance ? "Transactions" : "Balance"}></Image>
+          <div className={btnTransactionClassName} onClick={handleShowTransaction} ref={activeTransactionBtn}>
+            <p>Transactions</p>
+            <Image src={TransactionIcon} alt={"Transactions"}></Image>
           </div>
-          <div className={styles["btn-payment"]} onClick={() => setTogglePaymentForm(!togglePaymentForm)}>
+          <div className={btnPaymentClassName} onClick={handleShowPaymentForm} ref={activePaymentBtn}>
             <p>Payment</p>
             <Image src={PaymentIcon} alt="payment icon"></Image>
           </div>
