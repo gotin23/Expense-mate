@@ -57,6 +57,15 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.228) ;
     .debt-container{
         width: 100%;
     }
+    .debt-container li button:hover{
+       
+        background-color: #56b7f0;
+   
+          
+       }
+       .debt-container ul{
+        font-size: 20px;
+       }
 
   
 }

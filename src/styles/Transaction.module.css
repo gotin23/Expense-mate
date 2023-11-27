@@ -42,7 +42,7 @@
   }
   .table tr:nth-child(odd){
     height: 40px;
-    background-color: rgba(110, 143, 241, 0.165);
+    background-color: rgba(110, 143, 241, 0.081);
 
    
   }
@@ -66,6 +66,7 @@
     position: absolute;
     right: 3px;
     bottom: 3px;
+    transition: transform 0.2s ease;
   }
   .from,.amount,.date{
     position: relative;
@@ -77,3 +78,28 @@
   }
 
   
+  @media screen and (min-width: 800px) {
+    .table tr:hover{
+      background-color: rgba(62, 81, 227, 0.231);
+    }
+    .table th {
+    
+      font-size: 18px;
+     
+    }
+    .table td{
+      font-size: 16px;
+    }
+    .switch{
+  
+      right: 6px;
+      bottom: 6px;
+
+    }
+    .from:hover .switch,.amount:hover .switch,.date:hover .switch{
+     transform: scale(1.4);
+  
+      /* width: 100%; */
+    }
+    
+  }

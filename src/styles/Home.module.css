@@ -38,7 +38,7 @@ position: relative;
 }
 .group-container{
  height: 73%;
- background-color: rgb(98 137 255 / 35%);
+ background-color: rgb(212 221 249 / 35%);
 
  /* padding: 10px 0px; */
  overflow-y: auto;
@@ -66,6 +66,7 @@ position: relative;
 .add-user-icon{
   width: 40px;
   height: 40px;
+  transition: transform 0.2s ease-in;
 }
 .empty{
   margin-top: 100px;
@@ -84,6 +85,13 @@ position: relative;
 
   overflow: hidden;
   box-shadow:0px 0px 8px 0px rgba(46,46,46,0.46);
+    }
+    .btn-add-user-container:hover {
+      background: linear-gradient(98deg,#2e4fd3 35%,#38aaec 100%);
+      
+    }
+    .btn-add-user-container:hover .add-user-icon{
+          transform: scale(1.3);
     }
 
 }

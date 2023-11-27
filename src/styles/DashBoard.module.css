@@ -40,6 +40,7 @@ position: relative;
    width: 40px;
    height: 40px;
    cursor: pointer;
+   transition: transform 0.2s ease-in;
 }
 .total-container{
     width: 100%;
@@ -148,6 +149,11 @@ height: 40px;
 .btn-payment img{
     width: 50px;
     height: 50px;
+    /* transition: transform 0.4s ease-in; */
+}
+.btn-balance img{
+
+    /* transition: transform 0.4s ease-in; */
 }
 /* .btn-delete{
 background-color: var(--color-red);
@@ -157,6 +163,7 @@ background-color: var(--color-green);
 } */
 .btn-transation img{
     width: 30px;
+    /* transition: transform 0.4s ease-in; */
 }
 .modale-refund-container {
     position: absolute;
@@ -232,13 +239,31 @@ background-color: var(--color-green);
   
     .plus-container{
         background-color: var(--color-secondary);
-    width: 60%;
+    width: 80%;
         z-index: 4;
     /* height: 90%; */
-    border-radius: 10px;
+    /* border-radius: 10px; */
     overflow: hidden;
     box-shadow:0px 0px 8px 0px rgba(46,46,46,0.46);
     
+    }
+    .title-container img:hover{
+        transform: scale(1.2);
+    }
+    .title-container h3{
+        font-size: 30px;
+    }
+    .btn-payment:hover img{
+        transition: transform 0.2s ease-in;
+        transform: scale(1.1);
+    }
+    .btn-transaction:hover img{
+        transition: transform 0.2s ease-in;
+        transform: scale(1.1);
+    }
+    .btn-balance:hover img{
+        transition: transform 0.2s ease-in;
+        transform: scale(1.1);
     }
   
   
@@ -247,7 +272,7 @@ background-color: var(--color-green);
     
 .plus-container{
     height: 100%;
-    /* width: 60%; */
+    width: 60%;
 }
   
   }

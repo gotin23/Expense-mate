@@ -1,296 +1,16 @@
-/* .card{
-    background-color: var(--color-secondary);
 
-    color: var(--color-tertiary);
-    border-bottom: 1px solid var(--color-tertiary);
-    height: 120px;
-    position: relative;
-    transition: height 0.4s ease-in;
-    display: flex;
-    justify-content:flex-start;
-    align-items: center;
-    flex-direction: column;
-    overflow: hidden;
-
-}
-.active{
-    height:340px ;
-
-
-}
-
-.form{
-
-    width: 100%;
-    height: 220px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--color-tertiary);
-
-
- 
-}
-.form label,.form-participants{
-    margin-right: 20px;
-    font-size: 20px;
-}
-.amount-container{
-  margin-top: 20px;
-    padding-left: 10px;
-    width: 100%;
-    display: flex;
-}
-.input-number{
-    height: 30px;
-    border: none;
-    border-bottom: 2px solid var(--color-primary);
-  
-    text-align: center;
-}
-.checkbox-container{
-    display: flex;
-
-
-    width: 80%;
-    overflow-x: auto;;
-    margin-top: 30px;
-    margin-left: 10px;
-    padding-bottom: 20px;
-
-}
-.checkbox-container label{
-   margin-right: 5px;
-   white-space: nowrap;
-
-
-}
-.label-and-checkbox{
-margin-right: 15px;
-
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-
-}
-
-.title-and-btns{
-    display: flex;
-   flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    
-min-height: 120px;
-    width: 90%;
- 
-
-
-}
-.title-and-btns h2{
-  width: 25%;
-  font-size: 20px;
-}
-.icon-container{
-    background-color: var(--color-secondary);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: 2px solid var(--color-tertiary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-.icon-container p{
-    position: absolute;
-    width: 80px;
-
-    left: -85px;
-    display: flex;
-    justify-content: flex-end;
-  
-}
-.debt-icon,.payment-icon{
-    cursor: pointer;
- width: 30px;
- height: 80px;
- cursor: pointer;
-
-}
-.delete-icon{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    left: 10px;
-    top: 10px;
-    cursor: pointer;
-
-}
-.user-icon{
-    width: 30px;
-    height: 30px;
-}
-.user-icon-container{
-   
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 33%;
-
-
-}
-
-.category-and-pay{
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px  10px;
-}
-.btn-pay{
-    padding: 10px;  
-    border: 2px solid var(--color-tertiary);
-    border-radius: 10px;
-    color: var(--color-tertiary);
-    background-color:  var(--color-secondary) ;
-    cursor: pointer;
-}
-.toggle-delete{
-    position: absolute;
-    background-color: var(--color-secondary);
-    inset: 0;
-    color: var(--color-primary);
-    padding: 20px;
-}
-.toggle-delete p{
-    font-size: 20px;
-
-}
-.toggle-delete button{
-    border: none;
-    margin: 10px;
-    background-color: var(--color-secondary);
-    border: 2px solid var(--color-primary);
-    border-radius: 5px;
-    width: 40px;
-    height: 30px;
-    cursor: pointer;
-
-}
-
-
-
-
-
-.fadeIn {
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    }
-    @-webkit-keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-    }
-    @keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-    } 
-    @media screen and (max-width: 1280px) {
-        .title-and-btns h2{
-            
-            font-size: 17px;
-          }
-       
-    
-    }
-    @media screen and (max-width: 600px) {
-        .card{
-            height: 100px;
-        }
-        .active{
-            height:320px ;
-        
-        
-        }
-        .title-and-btns h2{  
-            font-size: 13px;
-          }
-          .icon-container{
-            background-color: var(--color-secondary);
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--color-tertiary);
-        
-        
-          
-        }
-        .icon-container p{
-            position: absolute;
-            width: 80px;
-        
-            left: -85px;
-            display: flex;
-            justify-content: flex-end;
-            font-size: 14px;
-          
-        }
-        .title-and-btns{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;      
-            min-height: 100px;
-            width: 96%;
-         
-        
-        
-        }
-        .debt-icon,.payment-icon{
-    
-         width: 20px;
-         height: 50px;
-        
-        
-        }
-        .delete-icon{
-
-            width: 15px;
-            height: 15px;
-            left: 10px;
-            top: 5px;
-          
-        
-        }
-        .user-icon{
-            width: 20px;
-            height: 20px;
-        }
-        .user-icon-container{          
-            display: flex;
-            justify-content: flex-end;
-            align-items:flex-start;
-            flex-direction: column;
-        
-        }
-       
-    
-    } */
     .card{
         width: 100%;
-        height: 70px;
-      
+        height: 70px;     
         display: flex;
-        /* margin-bottom: 1px; */
         margin-top: 1px;
-        /* background-color:var(--color-secondary); */
+
         background-color:var(--color-secondary);
         display: flex;
         justify-content: center;
         align-items: center;
         box-shadow: 0px 0px 1px 0px rgba(46,46,46,0.46);
+      
       
     }
     .user-container{
@@ -324,6 +44,7 @@ min-height: 120px;
     }
     .card-container{
         position: relative;
+
     }
     .delete{
 position:absolute;
@@ -332,6 +53,7 @@ position:absolute;
         height: 20px;
         top: 5px;
         cursor: pointer;
+        transition: transform 0.2s ease-in;
     }
     .btn-plus{
         width: 50px;
@@ -352,7 +74,16 @@ position:absolute;
     .btn-plus img{
         width: 30px;
         height: 30px;
+      
         /* filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.351)); */
       
 
     }
+    @media screen and (min-width: 800px) {
+           .card:hover{
+            background-color: rgba(34, 76, 245, 0.114);
+           }
+           .delete:hover{
+            transform: scale(1.3);
+           }
+        }
