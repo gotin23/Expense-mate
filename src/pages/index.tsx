@@ -7,13 +7,10 @@ import UserCard from "../../components/UserCard/UserCard";
 // import { UserState } from "@/redux/reducers/usersReducer";
 
 import { useDispatch, useSelector } from "react-redux";
-// import { addUser } from "@/redux/reducers/usersReducer";
-// import { RootState } from "../../Types/types";
-// import { ChangeEvent, useState } from "react";
 import AddUserToGroup from "../../components/AddUserToGroup/AddUserToGroup";
 import { Analytics } from "@vercel/analytics/react";
-// import MyGroup from "../../components/MyGroup/MyGroup";
-import React, { useState, useEffect } from "react";
+
+import React, { useState } from "react";
 import { modaleDeleteTrue } from "@/redux/reducers/toggleModaleReducer";
 import AddUserLogo from "../../public/assets/icons/Plus User Icon.svg";
 import Image from "next/image";
@@ -21,9 +18,8 @@ import { RootState, ToggleState } from "../../Types/types";
 
 export default function Home() {
   const users = useSelector((state: RootState) => state.user);
-  const toggleDeleteModale = useSelector((state: ToggleState) => state.modale);
+
   const dispatch = useDispatch();
-  console.log(toggleDeleteModale, "icici ");
 
   const [toggleAddUser, setToggleAddUser] = useState(false);
   const handleModaleAddUser = () => {

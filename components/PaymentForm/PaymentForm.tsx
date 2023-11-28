@@ -31,25 +31,23 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
   }));
 
   const [options, setOptions] = useState<Options[]>(initialOptions);
-  const [toggleForm, setToggleForm] = useState(false);
-  // const [toggleDebtModale, setToggleDebtModale] = useState(false);
+
   const [amount, setAmount] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [stepForm, setStepForm] = useState(1);
   const [note, setNote] = useState("");
-  console.log(options, "options");
+
   const handleStepForm = (e: SyntheticEvent) => {
     e.preventDefault();
     if (stepForm === 1 && parseFloat(amount) > 1) {
       setStepForm(2);
     }
     const oneIsChecked = options.some((objet) => objet.isChecked === true);
-    console.log(oneIsChecked);
+
     if (stepForm === 2 && oneIsChecked) {
       setStepForm(3);
     }
     if (stepForm === 3 && note.length < 51) {
-      console.log(note);
       handlePayment();
     }
   };
@@ -83,7 +81,6 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
     if (payment >= 1) {
       dispatch(addDebt({ toUser: "to" + name, date: date, valueOfDebt: valueOfDebt, participantsToDebt: ids, category: selectedOption }));
       dispatch(addPayment({ payment: payment, from: id, participants: participants, date: date, category: note, fromName: name }));
-      // setToggleForm(!toggleForm);
       setTogglePaymentForm(false);
     }
   };
@@ -95,7 +92,7 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
       setOptions(newOptions);
     }
   };
-  console.log(options);
+
   const handleInputAmount = (e: ChangeEvent<HTMLInputElement>) => {
     if (/^\d*\.?\d*$/.test(amount)) {
       setAmount(e.target.value);
@@ -113,7 +110,6 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
           <div className={styles["input-container"]}>
             <h3>Choose a amount:</h3>
             <div className={styles["amount-container"]}>
-              {/* <label htmlFor="amount">Amount:</label> */}
               <input type="number" min={0} placeholder="0" id="number" autoFocus value={amount} className={styles["input-number"]} onChange={handleInputAmount} />
             </div>
           </div>
@@ -122,18 +118,10 @@ export default function PaymentForm({ name, id, setTogglePaymentForm }: PaymentF
           <div className={styles["step2-container"]}>
             <h3>Select users who will share that transaction</h3>
             <div className={styles["checkbox-container"]}>
-              {/* <p className={styles["form-participants"]}>Participants:</p> */}
               {names.map((names, index) => (
                 <div key={index} className={styles["label-and-checkbox"]}>
                   <label htmlFor={`user-checkbox-${index}`}>{names}:</label>
-                  <input
-                    type="checkbox"
-                    id={`user-checkbox-${index}`}
-                    autoFocus
-                    // readOnly={name === names ? true : false}
-                    checked={options[index]?.isChecked}
-                    onChange={() => handleCheckBoxChange(index)}
-                  />
+                  <input type="checkbox" id={`user-checkbox-${index}`} autoFocus checked={options[index]?.isChecked} onChange={() => handleCheckBoxChange(index)} />
                 </div>
               ))}
             </div>

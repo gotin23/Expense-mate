@@ -24,10 +24,8 @@
    color: var(--color-primary);
 }
 .transaction span{
-
    font-size: 16px;
    margin-right: 8px;
-
    color: var(--color-primary);
    background-color: #45414133;
    padding: 2px 5px;

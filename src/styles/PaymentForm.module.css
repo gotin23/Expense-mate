@@ -1,29 +1,29 @@
-.payment-container{
+.payment-container {
     position: absolute;
     z-index: 10;
-    top:10%;
+    top: 10%;
     bottom: 15%;
     left: 0;
     right: 0;
     background-color: var(--color-secondary);
     color: var(--color-primary);
     padding: 10px;
-    
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     text-align: center;
-    /* overflow-y: auto; */
 }
-.payment-container form{
+
+.payment-container form {
     height: 100%;
-    /* background-color: blue; */
 }
-.payment-container h3{
-font-size: 28px;
-margin-top: 10px;
+
+.payment-container h3 {
+    font-size: 28px;
+    margin-top: 10px;
 }
-.input-container{
+
+.input-container {
     height: 50%;
     width: 100%;
     display: flex;
@@ -32,34 +32,39 @@ margin-top: 10px;
     align-items: center;
 
 }
-.step2-container{
-    height: 60%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
 
-}
-.step3-container{
+.step2-container {
     height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
 
 }
-.step2-container h3{
-font-size: 20px;
+
+.step3-container {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
 }
-.amount-container{
+
+.step2-container h3 {
+    font-size: 20px;
+}
+
+.amount-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.amount-container input{
+
+.amount-container input {
     border: none;
     width: 100%;
     height: auto;
@@ -69,7 +74,8 @@ font-size: 20px;
     text-align: center;
     margin-top: 30px;
 }
-.btns-container{
+
+.btns-container {
     display: flex;
     justify-content: space-around;
     align-content: center;
@@ -77,76 +83,85 @@ font-size: 20px;
     padding: 0px 30px;
 
 }
-.btn-valide,.btn-cancel{
+
+.btn-valide,
+.btn-cancel {
     min-width: 80px;
     padding: 8px 6px;
-    border:none;
+    border: none;
     border-radius: 8px;
     font-size: 20px;
-        cursor: pointer;
+    cursor: pointer;
     margin-top: 30px;
-    /* background-color: var(--color-green); */
+
 }
-.btn-cancel{
+
+.btn-cancel {
     background-color: var(--color-red);
 }
-.btn-valide{
+
+.btn-valide {
     background-color: var(--color-green);
 }
-.input-container h3{
-  
+
+.input-container h3 {
     font-size: 24px;
 
 }
-.checkbox-container{
+
+.checkbox-container {
     width: 100%;
     height: 60%;
-
     overflow-y: scroll;
     margin-top: 20px;
 }
-.label-and-checkbox{
+
+.label-and-checkbox {
     width: 100%;
-    /* background-color: blue; */
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
-.label-and-checkbox label{
-  font-size: 20px;
+
+.label-and-checkbox label {
+    font-size: 20px;
 }
-.label-and-checkbox input[type=checkbox]{
-   width: 30px;
-   height: 30px;
-   border-radius: 50%;
+
+.label-and-checkbox input[type=checkbox] {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
-.note-container{
+
+.note-container {
     width: 100%;
     height: 30%;
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  
-   
 
 }
-.note-container span{
+
+.note-container span {
     font-size: 15px;
     margin-top: 10px;
 
-   
-
 }
-.note-container input{
+
+.note-container input {
     width: 80%;
     height: 40%;
     border-radius: 8px;
     font-size: 22px;
     padding: 10px;
     text-align: center;
-  
 
+}
+
+@media screen and (min-width: 800px) {
+    .checkbox-container {
+        width: 80%;
+    }
 
 }

@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from "react";
-import { useState, ChangeEvent, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { addRefund } from "@/redux/reducers/usersReducer";
 import styles from "../../src/styles/Refund.module.css";
 
@@ -21,7 +21,6 @@ export default function Refund({ toRefund, name, id, debtAmount, setToggle }: Re
   };
   const handleRefund = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log(parseFloat(valueToRefund), Math.abs(debtAmount));
     if (Math.abs(debtAmount) >= parseFloat(valueToRefund)) {
       const currentDate = new Date();
       const date = currentDate.toISOString().split("T")[0];

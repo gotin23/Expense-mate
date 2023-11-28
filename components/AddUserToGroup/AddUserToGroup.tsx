@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "@/redux/reducers/usersReducer";
 import { RootState } from "../../Types/types";
 import { User } from "../../Types/types";
-import Link from "next/link";
 import styles from "../../src/styles/AddUserToGroup.module.css";
 import { AddUserToGroupProps } from "../../Types/types";
 export default function AddUserToGroup({ setToggle }: AddUserToGroupProps) {

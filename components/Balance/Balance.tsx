@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import styles from "../../src/styles/Balance.module.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,7 +13,6 @@ type BalanceProps = {
 export default function Balance({ id, name }: BalanceProps) {
   const users = useSelector((state: RootState) => state.user);
   const [userToRefund, setUserToRefund] = useState("");
-  //   const [valueToRefund, setValueToRefund] = useState("");
   const [debtAmount, setDebtAmount] = useState(0);
   const [toggleRefundForm, setToggleRefundForm] = useState(false);
   const dispatch = useDispatch();

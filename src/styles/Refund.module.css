@@ -1,8 +1,8 @@
 .modale-refund-container {
     position: absolute;
-    top:10%;
+    top: 10%;
     bottom: 15%;
-    left:0;
+    left: 0;
     right: 0;
     background-color: rgba(236, 13, 13, 0.377);
     z-index: 999;
@@ -15,28 +15,25 @@
     width: 100%;
     height: 100%;
     background-color: var(--color-secondary);
-
-    /* display: flex; */
     color: var(--color-primary);
-    /* justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: relative; */
     text-align: center;
     padding: 20px;
 }
-.modale-refund h3{
-   font-size: 35px;
-   margin-top: 50px;
+
+.modale-refund h3 {
+    font-size: 35px;
+    margin-top: 50px;
 }
-.modale-refund form{
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
+.modale-refund form {
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
-.modale-refund input{
+
+.modale-refund input {
     border: none;
     width: 100%;
     height: auto;
@@ -47,31 +44,34 @@
     margin-top: 30px;
 }
 
-.modale-refund label{
-   
+.modale-refund label {
     margin-top: 30px;
 }
-.btns-modale-container{
+
+.btns-modale-container {
     height: 20%;
-      width: 70%;
-   display: flex;
-   justify-content: space-around;
-   align-items: flex-start;
-  margin-top: 30px;
-  
-  
-  }
-  .yes,.no{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 30px;
+
+}
+
+.yes,
+.no {
     min-width: 80px;
     padding: 8px 6px;
-    border:none;
+    border: none;
     border-radius: 8px;
     font-size: 20px;
-        cursor: pointer;
-  }
-  .yes{
-      background-color: var(--color-green);
-  }
-  .no{
-      background-color: var(--color-red);
-  }
+    cursor: pointer;
+}
+
+.yes {
+    background-color: var(--color-green);
+}
+
+.no {
+    background-color: var(--color-red);
+}

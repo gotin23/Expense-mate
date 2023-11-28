@@ -1,58 +1,27 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import styles from "../../../src/styles/DashBoard.module.css";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../Types/types";
 import Transaction from "../../../components/Transaction/Transaction";
 import PaymentForm from "../../../components/PaymentForm/PaymentForm";
-import DeleteUser from "../../../components/DeleteUser/DeleteUser";
-import DeleteIcon from "../../../public/assets/icons/delete-4-svgrepo-com.svg";
 import PaymentIcon from "../../../public/assets/icons/Euro Banknote.svg";
 import HomeIcon from "../../../public/assets/icons/Home Icon.svg";
 import TransactionIcon from "../../../public/assets/icons/Transaction Icon.svg";
-// import BalanceIcon from "../../../public/assets/icons/Account Icon.svg";
 import BalanceIcon from "../../../public/assets/icons/Balance outline.svg";
-// import { useRouter } from "next/router";
 import Link from "next/link";
 import Balance from "../../../components/Balance/Balance";
 
 export default function Dashboard() {
   const users = useSelector((state: RootState) => state.user);
-  // const router = useRouter();
+
   const URL = window.location.pathname;
   const endURL = URL.split("/");
   const name = endURL[endURL.length - 1];
   const onUser = users.users.filter((el) => el.name === name);
-
-  // const router = useRouter();
-  // // Récupérez le chemin de l'URL actuelle
-  // const currentPath = router.asPath;
-  // // Trouvez le dernier index du caractère '/' dans le chemin de l'URL
-  // const lastIndex = currentPath.lastIndexOf("/");
-  // // Récupérez tout ce qui se trouve après le dernier '/'
-  // const name = lastIndex !== -1 ? currentPath.slice(lastIndex + 1) : "";
-  // const onUser = users.users.filter((el) => el.name === name);
-  // const id = onUser[0].id;
-  // useEffect(() => {
-  //   if (onUser.length === 0) {
-  //     console.log(onUser, name, "onrentre dans le useEffect", router);
-  //     router.push("/");
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-  // console.log(router, name);
-
   const id = onUser[0]?.id;
-
-  const dispatch = useDispatch();
-  const [toggleRefundForm, setToggleRefundForm] = useState(false);
-  const [toggleDeleteUser, setToggleDeleteUser] = useState(false);
   const [togglePaymentForm, setTogglePaymentForm] = useState(false);
-  const [userToRefund, setUserToRefund] = useState("");
-  const [valueToRefund, setValueToRefund] = useState("");
-  const [debtAmount, setDebtAmount] = useState(0);
-  const [switchTransactionBalance, setSwitchTransactionBalance] = useState(false);
   const [toggleBalance, setToggleBalance] = useState(true);
   const [toggleTransaction, setToggleTransaction] = useState(false);
 
@@ -61,9 +30,6 @@ export default function Dashboard() {
     valueOfDebt: number;
   };
   const names: string[] = users.users.map((user) => user.name);
-  const activeDeleteBtn = useRef<HTMLDivElement | null>(null);
-  const activeTransactionBtn = useRef<HTMLDivElement | null>(null);
-  const activePaymentBtn = useRef<HTMLDivElement | null>(null);
 
   const totalDebtArray = names.map((arrayName) => {
     const array = users.users[id] && users.users[id]["to" + arrayName];
@@ -105,7 +71,6 @@ export default function Dashboard() {
     }
     return acc;
   }, 0);
-  console.log(debtsOwedToMe, totalDebtArray, " icicicici");
 
   const myRefundArray =
     users.users[id] &&
@@ -128,14 +93,9 @@ export default function Dashboard() {
   const totalBalance = parseFloat((creditTotal - debtTotal + allRefundResult).toFixed(2));
 
   const handleShowBalance = () => {
-    // if (activeDeleteBtn.current && activeDeleteBtn.current.classList) {
-    //   activeDeleteBtn.current.classList.add("active");
-    // }
     if (!toggleBalance) {
       setToggleTransaction(false);
       setToggleBalance(true);
-
-      // activeDeleteBtn.current.classList.add("active");
     } else if (togglePaymentForm) {
       setTogglePaymentForm(false);
     }
@@ -145,17 +105,13 @@ export default function Dashboard() {
       setToggleTransaction(true);
       setToggleBalance(false);
       setTogglePaymentForm(false);
-      // activeTransactionBtn.current.classList.add("active");
     } else if (togglePaymentForm) {
       setTogglePaymentForm(false);
     }
   };
   const handleShowPaymentForm = () => {
     if (!togglePaymentForm) {
-      // setToggleTransaction(true);
-      // setToggleBalance(false);
       setTogglePaymentForm(true);
-      // activeTBtn.current.classList.add("active");
     }
   };
   const btnDeleteClassName = `${styles["btn-balance"]} ${toggleBalance && !togglePaymentForm ? styles["active"] : ""}`;
@@ -166,7 +122,6 @@ export default function Dashboard() {
     <>
       <div className={styles["plus-container"]}>
         {togglePaymentForm && <PaymentForm name={name} id={id} setTogglePaymentForm={setTogglePaymentForm} />}
-        {/* {toggleDeleteUser && <DeleteUser name={name} setToggleDelete={setToggleDeleteUser} />} */}
         <div className={styles["title-container"]}>
           <h3>Dashboard: {name}</h3>
           <Link href={"/"}>
@@ -182,15 +137,15 @@ export default function Dashboard() {
         {toggleBalance && <Balance name={name} id={id} />}
 
         <div className={styles["btns-container"]}>
-          <div className={btnDeleteClassName} onClick={handleShowBalance} ref={activeDeleteBtn}>
+          <div className={btnDeleteClassName} onClick={handleShowBalance}>
             <p>Balance</p>
             <Image src={BalanceIcon} alt="balance icon"></Image>
           </div>
-          <div className={btnTransactionClassName} onClick={handleShowTransaction} ref={activeTransactionBtn}>
+          <div className={btnTransactionClassName} onClick={handleShowTransaction}>
             <p>Transactions</p>
             <Image src={TransactionIcon} alt={"Transactions"}></Image>
           </div>
-          <div className={btnPaymentClassName} onClick={handleShowPaymentForm} ref={activePaymentBtn}>
+          <div className={btnPaymentClassName} onClick={handleShowPaymentForm}>
             <p>Payment</p>
             <Image src={PaymentIcon} alt="payment icon"></Image>
           </div>

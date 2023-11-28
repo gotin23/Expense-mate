@@ -1,13 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const modaleSlice = createSlice({
   name: "modale",
   initialState: false,
   reducers: {
-    modaleDeleteTrue: (state) => {
+    modaleDeleteTrue: () => {
       return true;
     },
-    modaleDeletefalse: (state) => {
+    modaleDeletefalse: () => {
       return false;
     },
   },

@@ -6,7 +6,7 @@ import { store, persistor } from "@/redux/store";
 import styles from "../styles/Home.module.css";
 import { PersistGate } from "redux-persist/integration/react";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

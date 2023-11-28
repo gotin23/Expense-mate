@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 import { deleteUser } from "@/redux/reducers/usersReducer";
 import { DeleteUserProps } from "../../Types/types";
 import { useRouter } from "next/router";
-import { redirect } from "next/navigation";
 
 export default function DeleteUser({ name, setToggleDelete }: DeleteUserProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const handleDeleteUser = () => {
-    // router.push("/");
     dispatch(deleteUser({ name: name }));
 
     setToggleDelete(false);

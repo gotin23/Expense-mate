@@ -1,21 +1,13 @@
 import React from "react";
 import styles from "../../src/styles/ShowTransaction.module.css";
 import { TransactionDetail } from "../../Types/types";
-// type ShowTransactionProps = {
-//   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
-//   transactionDetail: TransactionDetail;
-// };
-// type ShowTransactionProps = {
-//   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
-//   transactionDetail: TransactionDetail;
-// };
+
 type ShowTransactionProps = {
   setToggle: React.Dispatch<React.SetStateAction<boolean>>;
   transactionDetail: TransactionDetail;
 };
 
 export default function Showtransaction({ setToggle, transactionDetail }: ShowTransactionProps) {
-  console.log(transactionDetail);
   return (
     <div className={styles["transaction-container"]} onClick={() => setToggle(false)}>
       <div className={styles.transaction}>

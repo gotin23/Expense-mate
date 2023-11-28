@@ -1,71 +1,74 @@
-.debt-container{
+.debt-container {
     height: 67%;
     width: 100vw;
     color: var(--color-primary);
     text-align: left;
     overflow-y: auto;
-    padding:0px 10px;
+    padding: 0px 10px;
 
-   
 }
-.debt-container h3{
+
+.debt-container h3 {
     margin: 10px 0px;
     font-size: 28px;
-   
+
 }
-.balance{
+
+.balance {
     text-align: right;
 }
-.debt-container ul{
 
-
+.debt-container ul {
     list-style-type: none;
     font-size: 16px;
-   
-}
-.debt-container li{
- display: flex;
- justify-content: space-between;
-margin-top: 20px;
-padding-bottom: 5px;
-border-bottom: 1px solid rgba(0, 0, 0, 0.228) ;
-   
-}
-.debt-container li button{
- border: none;
- border-radius: 4px;
- padding: 4px 6px;
- color: var(--color-secondary);
- background-color: var(--color-tertiary);
- cursor: pointer;
 
-
-   
 }
-.positive{
+
+.debt-container li {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.228);
+
+}
+
+.debt-container li button {
+    border: none;
+    border-radius: 4px;
+    padding: 4px 6px;
+    color: var(--color-secondary);
+    background-color: var(--color-tertiary);
+    cursor: pointer;
+
+}
+
+.positive {
     color: green;
 }
-.negative{
+
+.negative {
     color: var(--color-red);
 }
-.message{
+
+.message {
     margin-top: 30px;
     text-align: center;
 }
 
 @media screen and (min-width: 800px) {
-    .debt-container{
+    .debt-container {
         width: 100%;
     }
-    .debt-container li button:hover{
-       
-        background-color: #56b7f0;
-   
-          
-       }
-       .debt-container ul{
-        font-size: 20px;
-       }
 
-  
+    .debt-container li button:hover {
+        background-color: #56b7f0;
+
+    }
+
+    .debt-container ul {
+        font-size: 20px;
+    }
+
+
 }

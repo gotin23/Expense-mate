@@ -28,7 +28,6 @@ export default function Transaction({ name }: TransactionProps) {
     setSortedTransaction(users.allTransactions);
   }, [users.allTransactions]);
 
-  // const dispatch = useDispatch();
   const showTransaction = (from: string, date: string, category: string, participants: string[], payment: number) => {
     setTransactionDetail({ from: from, date: date, category: category, participants: participants, payment: payment });
     setToggleShowTransaction(!toggleShowTransaction);

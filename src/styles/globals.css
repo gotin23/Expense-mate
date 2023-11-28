@@ -2,40 +2,29 @@
   --color-primary: #2541B2;
   --color-secondary: #ffffff;
   --color-tertiary: #20A4F3;
-  --color-green : #86e923;
-  --color-red : rgb(254, 60, 60);
+  --color-green: #86e923;
+  --color-red: rgb(254, 60, 60);
 }
+
 @font-face {
   font-family: 'Deeper';
   src: url('../../public/assets/fonts/TT\ Interphases\ Pro/interphase.ttf');
 
 }
-@font-face {
-  font-family: 'holy';
-  src: url('../../public/assets/fonts/Holly\ Groove.otf');
 
-}
 
-*,::after,::before{
+*,
+::after,
+::before {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
-  background-color: var(--color-primary) ;
-  color:var(--color-secondary);
+body {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
   font-family: "Deeper";
 
- 
+
 }
-
-
-
-
-
-
-
-
-
-
